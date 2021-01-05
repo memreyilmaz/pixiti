@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/nav_search">
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.example.pixiti.ui.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="com.example.pixiti.ui.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/nav_list"
+        android:name="com.example.pixiti.ui.ListFragment"
+        android:label="ListFragment"
+        tools:layout="@layout/fragment_list" />
+</navigation>

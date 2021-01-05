@@ -81,4 +81,12 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.2'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.2'
+    androidTestImplementation 'androidx.navigation:navigation-testing:2.3.2'
+
+    implementation 'com.google.android.material:material:1.2.1'
+
 }

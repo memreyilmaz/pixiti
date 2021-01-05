@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">pixiti</string>
+
+    <string name="label_search">Search</string>
+    <string name="label_categories">Categories</string>
+    <string name="label_Images">Images</string>
+
 </resources>
