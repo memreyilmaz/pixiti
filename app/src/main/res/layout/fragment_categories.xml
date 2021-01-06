@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CategoriesFragment">
+    tools:context=".ui.category.CategoriesFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCategory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CATEGORIES" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
