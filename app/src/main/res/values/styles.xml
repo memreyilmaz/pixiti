@@ -1,0 +1,64 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="DetailTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_default</item>
+    </style>
+
+    <style name="DetailTextView.Main">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailTextView.Dialog">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="DetailTextView.Dialog.Tag">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">@dimen/padding_default</item>
+        <item name="android:paddingEnd">@dimen/padding_default</item>
+        <item name="android:paddingTop">@dimen/padding_mini</item>
+        <item name="android:paddingBottom">@dimen/padding_mini</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
+    </style>
+
+    <style name="DetailIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="RelativeLayoutInfoDialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
+    </style>
+
+    <style name="Seperator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/default_seperator_height</item>
+        <item name="android:background">@color/colorBlack</item>
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents">
+        <item name="bottomNavigationStyle">
+            @style/Widget.MaterialComponents.BottomNavigationView.Colored
+        </item>
+        <item name="itemIconTint">@color/colorWhite</item>
+        <item name="itemTextColor">@color/colorWhite</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="elevation">@dimen/bottom_navigation_elevation</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+</resources>

@@ -2,8 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
-
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -38,6 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {
@@ -73,8 +73,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
@@ -89,4 +87,5 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.2.1'
 
+    implementation "com.google.android:flexbox:2.0.1"
 }

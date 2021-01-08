@@ -5,16 +5,16 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageViewCategoryName"
+        android:id="@+id/image_view_category_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:src="@drawable/ic_animals_cat" />
 
     <TextView
-        android:id="@+id/textViewCategoryName"
+        android:id="@+id/text_view_category_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewCategoryName"
+        android:layout_below="@id/image_view_category_name"
         android:gravity="center_horizontal"
         tools:text="@string/label_category_animals" />
 </RelativeLayout>

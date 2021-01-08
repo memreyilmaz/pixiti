@@ -25,4 +25,15 @@
     <string name="label_category_sports">Sports</string>
     <string name="label_category_transportation">Transportation</string>
     <string name="label_category_travel">Travel</string>
+
+    <string name="label_detail_info_resolution">Resolution</string>
+    <string name="label_detail_info_created">Created</string>
+    <string name="label_detail_info_views">Views</string>
+    <string name="label_detail_info_downloads">Downloads</string>
+
+    <string name="desc_share_image_message">Hello, I want to share this from Pixabay with you;</string>
+    <string name="desc_share_with">Share With</string>
+    <string name="desc_detail_info_resolution">%1$d x %2d</string>
+
+
 </resources>
