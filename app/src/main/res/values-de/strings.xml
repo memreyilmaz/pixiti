@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">pixiti</string>
+    <string name="label_search">Suche</string>
+    <string name="label_categories">Kategorien</string>
+    <string name="label_Images">Bilder</string>
+    <string name="label_category_animals">Tiere</string>
+    <string name="label_category_buildings">Architektur</string>
+    <string name="label_category_computer">Computer</string>
+    <string name="label_category_education">Bildung</string>
+    <string name="label_category_fashion">Mode</string>
+    <string name="label_category_feelings">Emotionen</string>
+    <string name="label_category_food">Essen</string>
+    <string name="label_category_health">Gesundheit</string>
+    <string name="label_category_industry">Industrie</string>
+    <string name="label_category_music">Musik</string>
+    <string name="label_category_nature">Natur</string>
+    <string name="label_category_people">Menschen</string>
+    <string name="label_category_places">Plätze</string>
+    <string name="label_category_religion">Religion</string>
+    <string name="label_category_science">Wissenschaft</string>
+    <string name="label_category_sports">Sport</string>
+    <string name="label_category_transportation">Transport</string>
+    <string name="label_category_travel">Reise</string>
+    <string name="label_detail_info_resolution">Auflösung</string>
+    <string name="label_category_business">Business</string>
+    <string name="label_category_backgrounds">Hintergründe</string>
+    <string name="label_detail_info_created">Erstellt</string>
+    <string name="label_detail_info_views">Aufrufe</string>
+    <string name="label_detail_info_downloads">Downloads</string>
+    <string name="desc_share_with">Teilen</string>
+    <string name="desc_share_image_message">Hallo, ich möchte dieses Bild von Pixabay mit dir teilen;</string>
+</resources>

@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixiti.ImageViewModel
+import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentCategoriesBinding
 import com.example.pixiti.model.Category
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -35,12 +36,11 @@ class CategoriesFragment : Fragment() {
     ): View? {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
 
-/*        viewModel.imagesList.observe(viewLifecycleOwner, {
+        viewModel.imagesList.observe(viewLifecycleOwner, {
             if (!it.images.isNullOrEmpty()){
-                //TODO needs to be solved
                 view?.findNavController()?.navigate(R.id.nav_list)
             }
-        })*/
+        })
 
         return binding?.root
     }

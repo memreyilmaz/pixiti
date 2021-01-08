@@ -7,11 +7,10 @@ import com.example.pixiti.databinding.ActivityDetailBinding
 import com.example.pixiti.model.Image
 
 class DetailActivity : AppCompatActivity() {
-    private var binding: ActivityDetailBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        val binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val image : Image? = intent.extras?.getParcelable(BUNDLE_IMAGE)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()

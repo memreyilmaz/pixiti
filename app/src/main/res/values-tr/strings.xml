@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">pixiti</string>
+    <string name="label_search">Ar</string>
+    <string name="label_categories">Kategoriler</string>
+    <string name="desc_share_with">Paylas</string>
+    <string name="label_detail_info_resolution">Çözünürlük</string>
+    <string name="label_category_travel">Seyahat</string>
+    <string name="label_category_transportation">Ulastirma</string>
+    <string name="label_category_science">Bilim</string>
+    <string name="label_category_religion">Din</string>
+    <string name="label_category_places">Yerler</string>
+    <string name="label_category_people">Insanlar</string>
+    <string name="label_category_nature">Doga</string>
+    <string name="label_category_music">Müzik</string>
+    <string name="label_category_industry">Endüstri</string>
+    <string name="label_category_health">Saglik</string>
+    <string name="label_category_food">Yemek</string>
+    <string name="label_category_feelings">Duygular</string>
+    <string name="label_category_fashion">Moda</string>
+    <string name="label_category_education">Egitim</string>
+    <string name="label_category_computer">Bilgisayar</string>
+    <string name="label_category_business">Is</string>
+    <string name="label_category_buildings">Yapilar</string>
+    <string name="label_category_backgrounds">Arkaplanlar</string>
+    <string name="label_category_animals">Hayvanlar</string>
+    <string name="label_category_sports">Spor</string>
+    <string name="label_detail_info_created">Olusturma Tarihi</string>
+    <string name="label_detail_info_views">Goruntulenme Sayisi</string>
+    <string name="label_detail_info_downloads">Indirmeler</string>
+    <string name="desc_share_image_message">Merhaba, seninle Pixabaydan bu resmi paylasmak istedim</string>
+    <string name="label_Images">Resimler</string>
+</resources>

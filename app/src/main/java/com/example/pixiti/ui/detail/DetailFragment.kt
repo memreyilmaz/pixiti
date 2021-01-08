@@ -40,54 +40,55 @@ class DetailFragment : Fragment() {
     }
 
     private fun initView() {
-        Glide.with(requireContext())
-            .load(image?.largeImageURL).placeholder(R.drawable.pixabay_logo)
-            .into(binding?.imageViewDetail!!)
-        binding?.imageViewDetail?.setOnPhotoTapListener { _, _, _ ->
-            binding?.constraintLayoutDetailTop?.isVisible =
-                !binding?.constraintLayoutDetailTop?.isVisible!!
-            binding?.constraintLayoutDetailBottom?.isVisible =
-                !binding?.constraintLayoutDetailBottom?.isVisible!!
-        }
+        binding?.apply {
+            Glide.with(requireContext())
+                .load(image?.largeImageURL)
+                .placeholder(R.drawable.pixabay_logo)
+                .error(R.drawable.pixabay_logo)
+                .into(imageViewDetail)
 
-        if (!image?.userImageURL?.trim().isNullOrEmpty()) {
+            imageViewDetail.setOnPhotoTapListener { _, _, _ ->
+                constraintLayoutDetailTop.isVisible = !constraintLayoutDetailTop.isVisible
+                constraintLayoutDetailBottom.isVisible = !constraintLayoutDetailBottom.isVisible
+            }
+
             Glide.with(requireContext())
                 .load(image?.userImageURL)
-                .into(binding?.imageViewImageOwner!!)
-        } else {
-            binding?.imageViewImageOwner?.let {
-                Glide.with(requireContext())
-                    .load(R.drawable.pixabay_logo)
-                    .into(it)
+                .placeholder(R.drawable.pixabay_logo)
+                .error(R.drawable.pixabay_logo)
+                .into(imageViewImageOwner)
+            //todo set if zero
+            textViewImageOwner.text = image?.user
+            textViewThumbCount.text = image?.likes.toString()
+            textViewFavouriteCount.text = image?.favorites.toString()
+            textViewCommentCount.text = image?.comments.toString()
+
+            imageViewSave.setOnClickListener {
+                //TODO implement image download
+            }
+
+            imageViewShare.setOnClickListener {
+                createShareIntent()
+            }
+
+            imageViewInfo.setOnClickListener {
+                showInfoDialog()
+            }
+
+            imageViewClose.setOnClickListener {
+                activity?.finish()
             }
         }
+    }
 
-        binding?.textViewImageOwner?.text = image?.user
-        binding?.textViewThumbCount?.text = image?.likes.toString()
-        binding?.textViewFavouriteCount?.text = image?.favorites.toString()
-        binding?.textViewCommentCount?.text = image?.comments.toString()
-
-        binding?.imageViewSave?.setOnClickListener {
-            //TODO implement image download
-        }
-
-        binding?.imageViewShare?.setOnClickListener {
-            createShareIntent()
-        }
-
-        binding?.imageViewInfo?.setOnClickListener {
-            image.let {
-                val imageDetailInfoFragment: DialogFragment =
-                    ImageDetailInfoFragment.newInstance(it!!)
-                imageDetailInfoFragment.show(
-                    childFragmentManager.beginTransaction(),
-                    ImageDetailInfoFragment.TAG
-                )
-            }
-        }
-
-        binding?.imageViewClose?.setOnClickListener {
-            //TODO
+    private fun showInfoDialog() {
+        image.let {
+            val imageDetailInfoFragment: DialogFragment =
+                ImageDetailInfoFragment.newInstance(it!!)
+            imageDetailInfoFragment.show(
+                childFragmentManager.beginTransaction(),
+                ImageDetailInfoFragment.TAG
+            )
         }
     }
 

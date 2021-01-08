@@ -1,5 +1,6 @@
 package com.example.pixiti
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,11 +10,13 @@ import kotlinx.coroutines.launch
 
 class ImageViewModel(private val imageRepository: ImageRepository) : ViewModel() {
 
-    var imagesList = MutableLiveData<ImageResponse>()
+   private val _imagesList = MutableLiveData<ImageResponse>()
+   val imagesList: LiveData<ImageResponse>
+        get() = _imagesList
 
     fun getImagesList(query: String?) {
         viewModelScope.launch {
-            imagesList.value = query?.let {
+            _imagesList.value = query?.let {
                 imageRepository.getImages(it)
             } ?: run {
                 imageRepository.getImages(DEFAULT_SEARCH_QUERY)

@@ -29,6 +29,13 @@
         <item name="android:layout_marginTop">@dimen/margin_medium</item>
     </style>
 
+    <style name="CategoryTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
     <style name="DetailIcon">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -59,6 +66,13 @@
         <item name="backgroundTint">@color/colorPrimary</item>
         <item name="elevation">@dimen/bottom_navigation_elevation</item>
         <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+        <item name="android:tint">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
     </style>
 
 </resources>
