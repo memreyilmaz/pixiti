@@ -7,15 +7,16 @@ import com.example.pixiti.model.Image
 import com.example.pixiti.paging.ImagePagingSource
 import kotlinx.coroutines.flow.Flow
 
-class ImageRepository(private val api: PixabayApi)  {
+class ImageRepository(private val pixabayApi: PixabayApi)  {
 
     fun getImages(query: String) : Flow<PagingData<Image>> {
-        return Pager(PagingConfig(IMAGE_PAGE_SIZE)) {
-            ImagePagingSource(api, query)
+        return Pager(PagingConfig(IMAGE_PAGE_SIZE, IMAGE_MAX_SIZE, false)) {
+            ImagePagingSource(pixabayApi, query)
         }.flow
     }
 
     companion object {
         private const val IMAGE_PAGE_SIZE = 20
+        private const val IMAGE_MAX_SIZE = 100
     }
 }

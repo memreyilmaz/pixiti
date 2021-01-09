@@ -3,25 +3,33 @@ package com.example.pixiti.paging
 import androidx.paging.PagingSource
 import com.example.pixiti.data.PixabayApi
 import com.example.pixiti.model.Image
+import retrofit2.HttpException
+import java.io.IOException
 
 class ImagePagingSource(
-    private val api: PixabayApi,
+    private val pixabayApi: PixabayApi,
     private val query: String
 ) : PagingSource<Int, Image>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Image> {
+        val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val nextPage = params.key ?: 1
-            val imageListResponse = api.getImagesList(query, nextPage, params.loadSize)
+            val imageListResponse = pixabayApi.searchImages(query, position, params.loadSize)
 
             LoadResult.Page(
                 data = imageListResponse.images,
-                prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = nextPage + 1
+                prevKey = if (position == 1) null else position - 1,
+                nextKey = if (imageListResponse.images.isEmpty()) null else position + 1
             )
-        } catch (e: Exception) {
+        } catch (e: IOException) {
+            LoadResult.Error(e)
+        } catch (e : HttpException){
             LoadResult.Error(e)
         }
+    }
+
+    companion object {
+        private const val STARTING_PAGE_INDEX = 1
     }
 }

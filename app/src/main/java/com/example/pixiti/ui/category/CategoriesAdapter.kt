@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pixiti.R
 import com.example.pixiti.databinding.ItemCategoryBinding
 import com.example.pixiti.model.Category
 
@@ -30,12 +31,16 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
 
     inner class CategoryViewHolder(private val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Category) {
-            binding.textViewCategoryName.text = itemView.context.resources.getString(item.name)
-            Glide.with(binding.imageViewCategoryName.context)
-                .load(item.image)
-                .into(binding.imageViewCategoryName)
-            binding.root.setOnClickListener {
-                onItemClickListener?.invoke(item.label)
+            binding.apply {
+                textViewCategoryName.text = itemView.context.resources.getString(item.name)
+                Glide.with(itemView)
+                    .load(item.image)
+                    .placeholder(R.drawable.pixabay_logo)
+                    .error(R.drawable.pixabay_logo)
+                    .into(binding.imageViewCategoryName)
+                root.setOnClickListener {
+                    onItemClickListener?.invoke(item.label)
+                }
             }
         }
     }

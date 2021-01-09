@@ -10,15 +10,15 @@ import kotlinx.coroutines.flow.Flow
 
 class ImageViewModel(private val imageRepository: ImageRepository) : ViewModel() {
 
-    private var currentQueryValue: String? = null
+    private var currentQuery: String? = null
     private var currentSearchResult: Flow<PagingData<Image>>? = null
 
-    fun getImagesList(query: String): Flow<PagingData<Image>> {
+    fun searchImages(query: String): Flow<PagingData<Image>> {
         val lastResult = currentSearchResult
-        if (query == currentQueryValue && lastResult != null) {
+        if (query == currentQuery && lastResult != null) {
             return lastResult
         }
-        currentQueryValue = query
+        currentQuery = query
         val newResult: Flow<PagingData<Image>> = imageRepository.getImages(query)
             .cachedIn(viewModelScope)
         currentSearchResult = newResult

@@ -50,13 +50,21 @@ class ListFragment : Fragment() {
             setHasFixedSize(true)
             layoutManager =
                 StaggeredGridLayoutManager(LIST_GRID_COUNT, StaggeredGridLayoutManager.VERTICAL)
-            adapter = listAdapter
+            adapter = listAdapter.withLoadStateHeaderAndFooter(
+                header = ListLoadStateAdapter().apply {
+                    onRetrylickListener = { listAdapter.retry() }
+                },
+                footer = ListLoadStateAdapter().apply {
+                    onRetrylickListener = { listAdapter.retry() }
+                }
+            )
             isNestedScrollingEnabled = false
         }
 
         lifecycleScope.launch {
-            viewModel.getImagesList("fruit").collectLatest {
-                listAdapter.submitData(it)
+            //TODO temp
+            viewModel.searchImages("fruit").collectLatest {
+                listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
     }

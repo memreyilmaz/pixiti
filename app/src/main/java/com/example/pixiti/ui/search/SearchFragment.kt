@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.navigation.findNavController
 import com.example.pixiti.ImageViewModel
-import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentSearchBinding
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -40,7 +38,7 @@ class SearchFragment : Fragment() {
             }
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query.trim().isNotEmpty()){
-                    viewModel.getImagesList(query)
+                    viewModel.searchImages(query)
                 }
                 return true
             }

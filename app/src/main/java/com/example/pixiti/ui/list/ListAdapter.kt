@@ -6,12 +6,13 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pixiti.R
 import com.example.pixiti.databinding.ItemListBinding
 import com.example.pixiti.model.Image
 
 typealias ListItemClickListener = (Image?) -> Unit
 
-class ListAdapter : PagingDataAdapter<Image,ListAdapter.ListViewHolder>(IMAGE_COMPARATOR) {
+class ListAdapter : PagingDataAdapter<Image, ListAdapter.ListViewHolder>(IMAGE_COMPARATOR) {
 
     var onItemClickListener: ListItemClickListener? = null
 
@@ -30,14 +31,19 @@ class ListAdapter : PagingDataAdapter<Image,ListAdapter.ListViewHolder>(IMAGE_CO
         }
     }
 
-    inner class ListViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ListViewHolder(private val binding: ItemListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Image) {
-            binding.textViewListName.text = item.tags
-            Glide.with(binding.imageViewListName.context)
-                .load(item.previewURL)
-                .into(binding.imageViewListName)
-            binding.root.setOnClickListener {
-                onItemClickListener?.invoke(item)
+            binding.apply {
+                textViewListName.text = item.tags
+                Glide.with(itemView)
+                    .load(item.previewURL)
+                    .placeholder(R.drawable.pixabay_logo)
+                    .error(R.drawable.pixabay_logo)
+                    .into(imageViewListName)
+                root.setOnClickListener {
+                    onItemClickListener?.invoke(item)
+                }
             }
         }
     }
