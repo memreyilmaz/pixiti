@@ -8,11 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentDetailBinding
 import com.example.pixiti.model.Image
 import com.example.pixiti.ui.detail.DetailActivity.Companion.BUNDLE_IMAGE
+import com.example.pixiti.utils.loadImage
+import com.example.pixiti.utils.toIntOrZero
 
 class DetailFragment : Fragment() {
 
@@ -41,27 +42,19 @@ class DetailFragment : Fragment() {
 
     private fun initView() {
         binding?.apply {
-            Glide.with(requireContext())
-                .load(image?.largeImageURL)
-                .placeholder(R.drawable.pixabay_logo)
-                .error(R.drawable.pixabay_logo)
-                .into(imageViewDetail)
-
-            imageViewDetail.setOnPhotoTapListener { _, _, _ ->
-                constraintLayoutDetailTop.isVisible = !constraintLayoutDetailTop.isVisible
-                constraintLayoutDetailBottom.isVisible = !constraintLayoutDetailBottom.isVisible
+            imageViewDetail.apply {
+                loadImage(imageUrl = image?.largeImageURL, requireContext())
+                setOnPhotoTapListener { _, _, _ ->
+                    constraintLayoutDetailTop.isVisible = !constraintLayoutDetailTop.isVisible
+                    constraintLayoutDetailBottom.isVisible = !constraintLayoutDetailBottom.isVisible
+                }
             }
 
-            Glide.with(requireContext())
-                .load(image?.userImageURL)
-                .placeholder(R.drawable.pixabay_logo)
-                .error(R.drawable.pixabay_logo)
-                .into(imageViewImageOwner)
-            //todo set if zero
+            imageViewImageOwner.loadImage(imageUrl = image?.userImageURL, context = requireContext())
             textViewImageOwner.text = image?.user
-            textViewThumbCount.text = image?.likes.toString()
-            textViewFavouriteCount.text = image?.favorites.toString()
-            textViewCommentCount.text = image?.comments.toString()
+            textViewThumbCount.text = image?.likes.toIntOrZero().toString()
+            textViewFavouriteCount.text = image?.favorites.toIntOrZero().toString()
+            textViewCommentCount.text = image?.comments.toIntOrZero().toString()
 
             imageViewSave.setOnClickListener {
                 //TODO implement image download

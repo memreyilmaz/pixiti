@@ -2,11 +2,11 @@ package com.example.pixiti.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixiti.databinding.LayoutListStateFooterBinding
+import com.example.pixiti.utils.showIf
 
 typealias ListFooterRetryClickListener = () -> Unit
 
@@ -31,11 +31,11 @@ class ListLoadStateAdapter : LoadStateAdapter<ListLoadStateAdapter.ListLoadState
 
         fun bind(loadState: LoadState) {
             binding.apply {
-                progressBarListFooter.isVisible = loadState is LoadState.Loading
-                textViewListFooterError.isVisible = loadState !is LoadState.Loading
+                progressBarListFooter.showIf(loadState is LoadState.Loading)
+                textViewListFooterError.showIf(loadState !is LoadState.Loading)
 
                 buttonListRetry.apply {
-                    isVisible = loadState !is LoadState.Loading
+                    showIf(loadState !is LoadState.Loading)
                     setOnClickListener {
                         onRetrylickListener?.invoke()
                     }

@@ -1,4 +1,4 @@
-package com.example.pixiti
+package com.example.pixiti.utils
 
 import android.view.View
 

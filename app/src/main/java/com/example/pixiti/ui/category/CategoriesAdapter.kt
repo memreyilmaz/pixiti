@@ -3,10 +3,9 @@ package com.example.pixiti.ui.category
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.pixiti.R
 import com.example.pixiti.databinding.ItemCategoryBinding
 import com.example.pixiti.model.Category
+import com.example.pixiti.utils.loadImage
 
 typealias CategoryItemClickListener = (String) -> Unit
 
@@ -33,11 +32,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
         fun bind(item: Category) {
             binding.apply {
                 textViewCategoryName.text = itemView.context.resources.getString(item.name)
-                Glide.with(itemView)
-                    .load(item.image)
-                    .placeholder(R.drawable.pixabay_logo)
-                    .error(R.drawable.pixabay_logo)
-                    .into(binding.imageViewCategoryName)
+                imageViewCategoryName.loadImage(resource = item.image, context = itemView.context)
                 root.setOnClickListener {
                     onItemClickListener?.invoke(item.label)
                 }

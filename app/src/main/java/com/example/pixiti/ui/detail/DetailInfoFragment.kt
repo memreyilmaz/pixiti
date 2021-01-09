@@ -10,7 +10,8 @@ import androidx.fragment.app.DialogFragment
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentImageDetailInfoBinding
 import com.example.pixiti.model.Image
-import com.example.pixiti.showIf
+import com.example.pixiti.utils.showIf
+import com.example.pixiti.utils.toIntOrZero
 
 class ImageDetailInfoFragment : DialogFragment() {
 
@@ -46,37 +47,46 @@ class ImageDetailInfoFragment : DialogFragment() {
     }
 
     private fun initView() {
-        binding?.textViewResolution?.text = getString(
-            R.string.desc_detail_info_resolution,
-            selectedImage?.imageWidth,
-            selectedImage?.imageHeight
-        )
-        binding?.textViewViewCount?.text = selectedImage?.views.toString()
-        binding?.textViewDownloadCount?.text = selectedImage?.downloads.toString()
+        binding?.apply {
+            textViewResolution.text = getString(
+                R.string.desc_detail_info_resolution,
+                selectedImage?.imageWidth.toIntOrZero(),
+                selectedImage?.imageHeight.toIntOrZero()
+            )
+            textViewViewCount.text = selectedImage?.views.toIntOrZero().toString()
+            textViewDownloadCount.text = selectedImage?.downloads.toIntOrZero().toString()
+        }
     }
 
     private fun setImageTags() {
-        val tagsList: MutableList<String>? = mutableListOf()
+        if (selectedImage?.tags.isNullOrEmpty()) return
+        val tagsList: MutableList<String> = mutableListOf()
 
         val result: List<String>? = selectedImage?.tags?.split(",")?.map { it.trim() }
 
         result?.forEach {
-            tagsList?.add(it)
+            tagsList.add(it)
         }
 
-        binding?.seperatorDetailInfo?.showIf(tagsList?.isNotEmpty())
-        binding?.flexboxLayoutTags?.showIf(tagsList?.isNotEmpty())
-
-        tagsList?.forEach { tag ->
-            val textViewTag =
-                LayoutInflater.from(context).inflate(
-                    R.layout.item_info_tag,
-                    binding?.flexboxLayoutTags,
-                    false
-                ) as TextView
-            textViewTag.text = tag
-            binding?.flexboxLayoutTags?.addView(textViewTag)
+        binding?.apply {
+            tagsList.forEach { tag ->
+                val textViewTag =
+                    LayoutInflater.from(context).inflate(
+                        R.layout.item_info_tag,
+                        flexboxLayoutTags,
+                        false
+                    ) as TextView
+                textViewTag.text = tag
+                flexboxLayoutTags.addView(textViewTag)
+            }
+            seperatorDetailInfo.showIf(tagsList.isNotEmpty())
+            flexboxLayoutTags.showIf(tagsList.isNotEmpty())
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     companion object {

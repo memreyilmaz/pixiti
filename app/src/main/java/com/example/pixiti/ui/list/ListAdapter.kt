@@ -5,10 +5,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.pixiti.R
 import com.example.pixiti.databinding.ItemListBinding
 import com.example.pixiti.model.Image
+import com.example.pixiti.utils.loadImage
 
 typealias ListItemClickListener = (Image?) -> Unit
 
@@ -36,11 +35,7 @@ class ListAdapter : PagingDataAdapter<Image, ListAdapter.ListViewHolder>(IMAGE_C
         fun bind(item: Image) {
             binding.apply {
                 textViewListName.text = item.tags
-                Glide.with(itemView)
-                    .load(item.previewURL)
-                    .placeholder(R.drawable.pixabay_logo)
-                    .error(R.drawable.pixabay_logo)
-                    .into(imageViewListName)
+                imageViewListName.loadImage(imageUrl = item.previewURL, context = itemView.context)
                 root.setOnClickListener {
                     onItemClickListener?.invoke(item)
                 }

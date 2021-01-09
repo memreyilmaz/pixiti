@@ -7,32 +7,32 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Image(
     @SerializedName("largeImageURL")
-    val largeImageURL: String,
+    val largeImageURL: String?,
     @SerializedName("likes")
-    val likes: Int,
+    val likes: Int?,
     val id: Int,
     @SerializedName("comments")
-    val comments: Int,
+    val comments: Int?,
     @SerializedName("pageURL")
-    val pageURL: String,
+    val pageURL: String?,
     @SerializedName("tags")
-    val tags: String,
+    val tags: String?,
     @SerializedName("user")
-    val user: String,
+    val user: String?,
     @SerializedName("favorites")
-    val favorites: Int,
+    val favorites: Int?,
     @SerializedName("previewURL")
-    val previewURL: String,
+    val previewURL: String?,
     @SerializedName("imageWidth")
-    val imageWidth: Int,
+    val imageWidth: Int?,
     @SerializedName("imageHeight")
-    val imageHeight: Int,
+    val imageHeight: Int?,
     @SerializedName("imageSize")
-    val imageSize: Int,
+    val imageSize: Int?,
     @SerializedName("views")
-    val views: Int,
+    val views: Int?,
     @SerializedName("downloads")
-    val downloads: Int,
+    val downloads: Int?,
     @SerializedName("userImageURL")
-    val userImageURL: String
+    val userImageURL: String?
 ) : Parcelable

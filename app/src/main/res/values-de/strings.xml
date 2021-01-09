@@ -30,4 +30,6 @@
     <string name="label_detail_info_downloads">Downloads</string>
     <string name="desc_share_with">Teilen</string>
     <string name="desc_share_image_message">Hallo, ich möchte dieses Bild von Pixabay mit dir teilen;</string>
+    <string name="desc_list_load_fail">Bilder konnten nicht geladen werden</string>
+    <string name="label_list_retry">Erneut versuchen</string>
 </resources>
