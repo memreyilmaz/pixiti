@@ -17,10 +17,6 @@ class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private val viewModel by sharedViewModel<ImageViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,14 +43,6 @@ class SearchFragment : Fragment() {
                     viewModel.getImagesList(query)
                 }
                 return true
-            }
-        })
-
-        viewModel.imagesList.observe(viewLifecycleOwner, {
-            if (!it.images.isNullOrEmpty()){
-                view?.findNavController()?.navigate(R.id.nav_categories)
-            } else {
-                // TODO show a no results text
             }
         })
     }

@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pixiti.ImageViewModel
 import com.example.pixiti.databinding.FragmentListBinding
 import com.example.pixiti.ui.detail.DetailActivity
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class ListFragment : Fragment() {
@@ -28,11 +31,6 @@ class ListFragment : Fragment() {
                 startActivity(intent)
             }
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getImagesList(null)
     }
 
     override fun onCreateView(
@@ -56,11 +54,11 @@ class ListFragment : Fragment() {
             isNestedScrollingEnabled = false
         }
 
-        viewModel.imagesList.observe(viewLifecycleOwner, {
-            if (!it.images.isNullOrEmpty()) {
-                listAdapter.updateItems(it.images)
+        lifecycleScope.launch {
+            viewModel.getImagesList("fruit").collectLatest {
+                listAdapter.submitData(it)
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

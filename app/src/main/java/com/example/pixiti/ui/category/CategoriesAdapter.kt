@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.pixiti.databinding.ItemCategoryBinding
 import com.example.pixiti.model.Category
 
-typealias CategoryItemClickListener = (String?) -> Unit
+typealias CategoryItemClickListener = (String) -> Unit
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 

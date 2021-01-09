@@ -26,21 +26,11 @@ class CategoriesFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-
-        viewModel.imagesList.observe(viewLifecycleOwner, {
-            if (!it.images.isNullOrEmpty()){
-                view?.findNavController()?.navigate(R.id.nav_list)
-            }
-        })
 
         return binding?.root
     }
@@ -58,7 +48,6 @@ class CategoriesFragment : Fragment() {
         }
         categoriesAdapter.updateItems(Category.createCategoryList())
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

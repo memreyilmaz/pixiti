@@ -2,6 +2,8 @@ package com.example.pixiti.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pixiti.databinding.ItemListBinding
@@ -9,9 +11,8 @@ import com.example.pixiti.model.Image
 
 typealias ListItemClickListener = (Image?) -> Unit
 
-class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
+class ListAdapter : PagingDataAdapter<Image,ListAdapter.ListViewHolder>(IMAGE_COMPARATOR) {
 
-    private var images: List<Image> = listOf()
     var onItemClickListener: ListItemClickListener? = null
 
     override fun onCreateViewHolder(
@@ -23,10 +24,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListAdapter.ListViewHolder, position: Int) {
-        holder.bind(images[position])
+        val imageItem = getItem(position)
+        if (imageItem != null) {
+            holder.bind(imageItem)
+        }
     }
-
-    override fun getItemCount(): Int = images.size
 
     inner class ListViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Image) {
@@ -40,8 +42,13 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
         }
     }
 
-    fun updateItems(items: List<Image>) {
-        images = items
-        notifyDataSetChanged()
+    companion object {
+        private val IMAGE_COMPARATOR = object : DiffUtil.ItemCallback<Image>() {
+            override fun areItemsTheSame(oldItem: Image, newItem: Image): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Image, newItem: Image): Boolean =
+                oldItem == newItem
+        }
     }
 }
