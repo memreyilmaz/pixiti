@@ -1,19 +1,26 @@
 package com.example.pixiti.ui.detail
 
+import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentDetailBinding
 import com.example.pixiti.model.Image
 import com.example.pixiti.ui.detail.DetailActivity.Companion.BUNDLE_IMAGE
-import com.example.pixiti.utils.loadImage
-import com.example.pixiti.utils.toIntOrZero
+import com.example.pixiti.utils.*
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 
 class DetailFragment : Fragment() {
 
@@ -45,19 +52,22 @@ class DetailFragment : Fragment() {
             imageViewDetail.apply {
                 loadImage(imageUrl = image?.largeImageURL, requireContext())
                 setOnPhotoTapListener { _, _, _ ->
-                    constraintLayoutDetailTop.isVisible = !constraintLayoutDetailTop.isVisible
-                    constraintLayoutDetailBottom.isVisible = !constraintLayoutDetailBottom.isVisible
+                    constraintLayoutDetailTop.showIfNotVisible()
+                    constraintLayoutDetailBottom.showIfNotVisible()
                 }
             }
 
-            imageViewImageOwner.loadImage(imageUrl = image?.userImageURL, context = requireContext())
+            imageViewImageOwner.loadImage(
+                imageUrl = image?.userImageURL,
+                context = requireContext()
+            )
             textViewImageOwner.text = image?.user
             textViewThumbCount.text = image?.likes.toIntOrZero().toString()
             textViewFavouriteCount.text = image?.favorites.toIntOrZero().toString()
             textViewCommentCount.text = image?.comments.toIntOrZero().toString()
 
             imageViewSave.setOnClickListener {
-                //TODO implement image download
+                requestPermissionForImageDownload()
             }
 
             imageViewShare.setOnClickListener {
@@ -99,13 +109,53 @@ class DetailFragment : Fragment() {
         startActivity(Intent.createChooser(shareIntent, getString(R.string.desc_share_with)))
     }
 
+    private fun requestPermissionForImageDownload() {
+        Dexter.withContext(requireContext())
+            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse) {
+                    //TODO download image
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse) {
+                    if (response.isPermanentlyDenied) showSettingsDialog()
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest?,
+                    token: PermissionToken
+                ) {
+                    token.continuePermissionRequest()
+                }
+            }).check()
+    }
+
+    private fun showSettingsDialog() {
+        context?.showAlertDialog(
+            title = getString(R.string.desc_permission_denial_title),
+            message = getString(R.string.desc_permission_denial_detail),
+            negativeButtonText = getString(R.string.label_cancel),
+            positiveButtonText = getString(R.string.label_settings),
+            positivebuttonListener = {
+                openSettings()
+            }
+        )
+    }
+
+    private fun openSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", context?.packageName, null)
+        intent.data = uri
+        startActivityForResult(intent, GO_TO_SETTINGS_REQUEST_CODE)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
 
     companion object {
-
+        const val GO_TO_SETTINGS_REQUEST_CODE = 100
         fun newInstance(image: Image?) = DetailFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(BUNDLE_IMAGE, image)

@@ -26,4 +26,5 @@
     <dimen name="info_tag_corner_radius">24dp</dimen>
     <dimen name="info_dialog_corner_radius">12dp</dimen>
     <dimen name="bottom_navigation_elevation">2dp</dimen>
+    <dimen name="detail_count_min_width">36dp</dimen>
 </resources>

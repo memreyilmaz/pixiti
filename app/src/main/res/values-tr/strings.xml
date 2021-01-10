@@ -29,7 +29,7 @@
     <string name="label_detail_info_views">Goruntulenme Sayisi</string>
     <string name="label_detail_info_downloads">Indirmeler</string>
     <string name="desc_share_image_message">Merhaba, seninle Pixabaydan bu resmi paylasmak istedim</string>
-    <string name="label_Images">Resimler</string>
+    <string name="label_images">Resimler</string>
     <string name="label_list_retry">Tekrar Dene</string>
     <string name="desc_list_load_fail">Resimler Yüklenemedi!</string>
 </resources>

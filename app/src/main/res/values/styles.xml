@@ -16,6 +16,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="DetailTextView.Main.Count">
+        <item name="android:minWidth">@dimen/detail_count_min_width</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
     <style name="DetailTextView.Dialog">
         <item name="android:textColor">@color/colorBlack</item>
     </style>

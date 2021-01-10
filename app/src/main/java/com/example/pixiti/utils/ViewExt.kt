@@ -29,3 +29,10 @@ fun View.dismiss() {
 fun View.showIf(statement: Boolean?) {
     this.visibility = if (statement != null && statement) View.VISIBLE else View.GONE
 }
+
+/*
+ * Sets View visibility to Gone if view is shown else Visible
+ */
+fun View.showIfNotVisible() {
+    this.visibility = if (this.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+}

@@ -3,7 +3,7 @@
 
     <string name="label_search">Search</string>
     <string name="label_categories">Categories</string>
-    <string name="label_Images">Images</string>
+    <string name="label_images">Images</string>
 
     <string name="label_category_animals">Animals</string>
     <string name="label_category_backgrounds">Backgrounds</string>
@@ -37,5 +37,9 @@
 
     <string name="desc_list_load_fail">Images couldn\'t load</string>
     <string name="label_list_retry">Retry</string>
+    <string name="desc_permission_denial_title">Permission Required</string>
+    <string name="desc_permission_denial_detail">Pixiti requires access to your files for saving this image to your phone.</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_settings">Go To Settings</string>
 
 </resources>

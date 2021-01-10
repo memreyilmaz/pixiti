@@ -3,7 +3,7 @@
     <string name="app_name">pixiti</string>
     <string name="label_search">Suche</string>
     <string name="label_categories">Kategorien</string>
-    <string name="label_Images">Bilder</string>
+    <string name="label_images">Bilder</string>
     <string name="label_category_animals">Tiere</string>
     <string name="label_category_buildings">Architektur</string>
     <string name="label_category_computer">Computer</string>

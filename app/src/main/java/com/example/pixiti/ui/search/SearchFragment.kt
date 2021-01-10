@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import com.example.pixiti.ImageViewModel
 import com.example.pixiti.databinding.FragmentSearchBinding
+import com.example.pixiti.utils.hideKeyboard
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class SearchFragment : Fragment() {
@@ -37,6 +38,9 @@ class SearchFragment : Fragment() {
                 return true
             }
             override fun onQueryTextSubmit(query: String): Boolean {
+                view?.let {
+                    activity?.hideKeyboard(it)
+                }
                 if (query.trim().isNotEmpty()){
                     viewModel.searchImages(query)
                 }
