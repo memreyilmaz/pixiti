@@ -32,4 +32,10 @@
     <string name="label_images">Resimler</string>
     <string name="label_list_retry">Tekrar Dene</string>
     <string name="desc_list_load_fail">Resimler Yüklenemedi!</string>
+    <string name="desc_permission_denial_title">Bu fotografi kaydetmek icin cihazinizdaki medyaya erisim izni gerekiyor</string>
+    <string name="desc_permission_denial_detail">Depolama izinlerine Ayarlar > Uygulamalar > Pixiti > Izinler yoluyla ulasabilirsiniz</string>
+    <string name="desc_permission_error">Izinlerin alinmasi sirasinda bir hata olustu!</string>
+    <string name="desc_permission_missing_permission">Tüm izinler verilmedi</string>
+    <string name="label_cancel">Vazgec</string>
+    <string name="label_settings">Uygulama ayarlarina git</string>
 </resources>

@@ -37,9 +37,13 @@
 
     <string name="desc_list_load_fail">Images couldn\'t load</string>
     <string name="label_list_retry">Retry</string>
-    <string name="desc_permission_denial_title">Permission Required</string>
-    <string name="desc_permission_denial_detail">Pixiti requires access to your files for saving this image to your phone.</string>
+    <string name="desc_permission_denial_title">It looks like you have turned off permissions required for this feature</string>
+    <string name="desc_permission_denial_detail">Storage permissions can be enabled under Settings > Apps > Pixiti > Permissions.</string>
+    <string name="desc_permission_error">An error occurred while getting permissions!</string>
+    <string name="desc_permission_missing_permission">All permissions are not granted!</string>
     <string name="label_cancel">Cancel</string>
-    <string name="label_settings">Go To Settings</string>
+    <string name="label_settings">Go To App Settings</string>
+    <string name="desc_download_success">Image Saved</string>
+    <string name="desc_image_download_error">An error occurred while saving image!</string>
 
 </resources>

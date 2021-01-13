@@ -2,9 +2,32 @@ package com.example.pixiti.utils
 
 import android.app.Activity
 import android.content.Context
+import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+
+/*
+ * Create an toast
+ */
+fun Context.toast(
+    message: String,
+    length: Int = Toast.LENGTH_SHORT
+) = Toast.makeText(this, message, length).show()
+
+
+/*
+ * Create an toast
+ */
+fun Context.toastForDetail(
+    message: String,
+    length: Int = Toast.LENGTH_SHORT
+) {
+    val toast = Toast.makeText(this, message, length)
+        toast.setGravity(Gravity.BOTTOM, 0 , 200)
+        toast.show()
+}
 
 /*
  * Create an alert dialog

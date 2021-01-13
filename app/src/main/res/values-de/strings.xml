@@ -32,4 +32,8 @@
     <string name="desc_share_image_message">Hallo, ich möchte dieses Bild von Pixabay mit dir teilen;</string>
     <string name="desc_list_load_fail">Bilder konnten nicht geladen werden</string>
     <string name="label_list_retry">Erneut versuchen</string>
+    <string name="desc_permission_denial_title">Anscheinend hast du die nötigen Berechtigungen für diese Funktion deaktiviert</string>
+    <string name="desc_permission_denial_detail">Einstellungen für Speicher können unter Einstellungen > Apps > Pixiti > Berechtigungen eingestellt werden</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_settings">Gehe zur App Einstellungen</string>
 </resources>

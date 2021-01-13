@@ -1,26 +1,36 @@
 package com.example.pixiti.ui.detail
 
-import android.Manifest
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentDetailBinding
 import com.example.pixiti.model.Image
 import com.example.pixiti.ui.detail.DetailActivity.Companion.BUNDLE_IMAGE
 import com.example.pixiti.utils.*
 import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.single.PermissionListener
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
 class DetailFragment : Fragment() {
 
@@ -67,7 +77,11 @@ class DetailFragment : Fragment() {
             textViewCommentCount.text = image?.comments.toIntOrZero().toString()
 
             imageViewSave.setOnClickListener {
-                requestPermissionForImageDownload()
+                if (PermissionUtil.isStoragePermissionGranted(requireContext())) {
+                    downloadImage()
+                } else {
+                    requestPermissionForImageDownload()
+                }
             }
 
             imageViewShare.setOnClickListener {
@@ -95,39 +109,95 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun createShareIntent() {
-        val shareString = StringBuilder()
-        shareString.append(getString(R.string.desc_share_image_message))
-            .append("\n")
-            .append(image?.pageURL)
+    private fun downloadImage() {
+        Glide.with(requireContext())
+            .asBitmap()
+            .load(image?.largeImageURL)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onLoadCleared(placeholder: Drawable?) {
+                    //no-op
+                }
 
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.apply {
-            putExtra(Intent.EXTRA_TEXT, shareString.toString())
-            type = "text/plain"
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    saveImage(resource)
+                }
+            })
+    }
+
+    private fun saveImage(image: Bitmap): String? {
+        var imagePath: String? = null
+        val imageFileName = "${System.currentTimeMillis()}.jpg"
+
+        val storageDirectory = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                .toString() + "/pixiti"
+        )
+        var success = true
+        if (!storageDirectory.exists()) {
+            success = storageDirectory.mkdirs()
         }
-        startActivity(Intent.createChooser(shareIntent, getString(R.string.desc_share_with)))
+        if (success) {
+            val imageFile = File(storageDirectory, imageFileName)
+            imagePath = imageFile.absolutePath
+            try {
+                val outputStream: OutputStream = FileOutputStream(imageFile)
+                image.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                outputStream.close()
+                requireContext().applicationContext.toastForDetail(getString(R.string.desc_download_success))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                requireContext().applicationContext.toastForDetail(getString(R.string.desc_image_download_error))
+
+            }
+            addImageToGallery(imagePath)
+        }
+        return imagePath
+    }
+
+    private fun addImageToGallery(imagePath: String?) {
+        imagePath?.let {
+            val file = File(it)
+            MediaScannerConnection.scanFile(
+                context,
+                arrayOf(file.toString()),
+                arrayOf(file.name),
+                null
+            )
+        }
     }
 
     private fun requestPermissionForImageDownload() {
         Dexter.withContext(requireContext())
-            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .withListener(object : PermissionListener {
-                override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                    //TODO download image
-                }
-
-                override fun onPermissionDenied(response: PermissionDeniedResponse) {
-                    if (response.isPermanentlyDenied) showSettingsDialog()
+            .withPermissions(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    report?.let {
+                        when {
+                            it.areAllPermissionsGranted() -> {
+                                downloadImage()
+                            }
+                            it.isAnyPermissionPermanentlyDenied -> {
+                                showSettingsDialog()
+                            }
+                            else -> {
+                                requireContext().applicationContext.toastForDetail(getString(R.string.desc_permission_missing_permission))
+                            }
+                        }
+                    }
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
-                    permission: PermissionRequest?,
-                    token: PermissionToken
+                    p0: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
                 ) {
-                    token.continuePermissionRequest()
+                    token?.continuePermissionRequest()
                 }
-            }).check()
+            }
+            ).withErrorListener {
+                requireContext().applicationContext.toastForDetail(getString(R.string.desc_permission_error))
+            }
+            .onSameThread()
+            .check()
     }
 
     private fun showSettingsDialog() {
@@ -147,6 +217,20 @@ class DetailFragment : Fragment() {
         val uri: Uri = Uri.fromParts("package", context?.packageName, null)
         intent.data = uri
         startActivityForResult(intent, GO_TO_SETTINGS_REQUEST_CODE)
+    }
+
+    private fun createShareIntent() {
+        val shareString = StringBuilder()
+        shareString.append(getString(R.string.desc_share_image_message))
+            .append("\n")
+            .append(image?.pageURL)
+
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.apply {
+            putExtra(Intent.EXTRA_TEXT, shareString.toString())
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.desc_share_with)))
     }
 
     override fun onDestroyView() {
