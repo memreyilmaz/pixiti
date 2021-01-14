@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.navigation.findNavController
 import com.example.pixiti.ImageViewModel
+import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentSearchBinding
+import com.example.pixiti.ui.list.ListFragmentArgs
 import com.example.pixiti.utils.hideKeyboard
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -42,7 +45,9 @@ class SearchFragment : Fragment() {
                     activity?.hideKeyboard(it)
                 }
                 if (query.trim().isNotEmpty()){
-                    viewModel.searchImages(query)
+                    val searchQuery = query.trim()
+                    val query = ListFragmentArgs.Builder().setQuery(searchQuery).build().toBundle()
+                    view?.findNavController()?.navigate(R.id.nav_list, query)
                 }
                 return true
             }

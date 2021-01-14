@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pixiti.ImageViewModel
 import com.example.pixiti.databinding.FragmentListBinding
 import com.example.pixiti.ui.detail.DetailActivity
+import com.example.pixiti.utils.toast
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -19,7 +21,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class ListFragment : Fragment() {
 
     private val viewModel by sharedViewModel<ImageViewModel>()
-
+    private val arguments : ListFragmentArgs by navArgs()
     private var binding: FragmentListBinding? = null
 
     private val listAdapter by lazy {
@@ -45,7 +47,7 @@ class ListFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
+        val query = arguments.query
         binding?.recyclerViewList?.apply {
             setHasFixedSize(true)
             layoutManager =
@@ -62,8 +64,7 @@ class ListFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            //TODO temp
-            viewModel.searchImages("fruit").collectLatest {
+            viewModel.searchImages(query).collectLatest {
                 listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }

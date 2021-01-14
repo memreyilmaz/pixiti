@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixiti.ImageViewModel
+import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentCategoriesBinding
 import com.example.pixiti.model.Category
+import com.example.pixiti.ui.list.ListFragmentArgs
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class CategoriesFragment : Fragment() {
@@ -19,7 +22,8 @@ class CategoriesFragment : Fragment() {
     private val categoriesAdapter by lazy {
         CategoriesAdapter().apply {
             onItemClickListener = { category->
-                viewModel.searchImages(category)
+                val query = ListFragmentArgs.Builder().setQuery(category).build().toBundle()
+                view?.findNavController()?.navigate(R.id.nav_list, query)
             }
         }
     }
