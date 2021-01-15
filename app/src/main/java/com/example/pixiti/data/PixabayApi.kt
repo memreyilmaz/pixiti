@@ -13,4 +13,9 @@ interface PixabayApi {
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): ImageResponse
+
+    @GET(KEY)
+    suspend fun getOneImage(
+        @Query("image_type") imageType: String? = "photo",
+        @Query("orientation") orientation: String? = "vertical"): ImageResponse
 }

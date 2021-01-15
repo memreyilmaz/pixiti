@@ -15,6 +15,10 @@ class ImageRepository(private val pixabayApi: PixabayApi)  {
         }.flow
     }
 
+    suspend fun getRandomImage() : Image? {
+        return pixabayApi.getOneImage().images.randomOrNull()
+    }
+
     companion object {
         private const val IMAGE_PAGE_SIZE = 20
         private const val IMAGE_MAX_SIZE = 100

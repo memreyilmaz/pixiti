@@ -22,7 +22,8 @@ class CategoriesFragment : Fragment() {
     private val categoriesAdapter by lazy {
         CategoriesAdapter().apply {
             onItemClickListener = { category->
-                val query = ListFragmentArgs.Builder().setQuery(category).build().toBundle()
+                val query = ListFragmentArgs(category).toBundle()
+               // val query = ListFragmentArgs.setQuery(category).build().toBundle()
                 view?.findNavController()?.navigate(R.id.nav_list, query)
             }
         }
@@ -43,9 +44,8 @@ class CategoriesFragment : Fragment() {
 
         binding?.recyclerViewCategory?.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), CATEGORY_GRID_COUNT)
+           // layoutManager = GridLayoutManager(requireContext(), CATEGORY_GRID_COUNT)
             adapter = categoriesAdapter
-            isNestedScrollingEnabled = false
         }
         categoriesAdapter.updateItems(Category.createCategoryList())
     }

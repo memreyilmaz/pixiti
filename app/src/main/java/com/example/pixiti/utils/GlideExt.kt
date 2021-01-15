@@ -20,3 +20,9 @@ fun ImageView.loadImage(resource: Int?, context: Context) {
         .error(R.drawable.pixabay_logo)
         .into(this)
 }
+
+fun ImageView.loadImageWithout(imageUrl: String?, context: Context) {
+    Glide.with(context)
+        .load(imageUrl)
+        .into(this)
+}

@@ -12,12 +12,13 @@ import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentSearchBinding
 import com.example.pixiti.ui.list.ListFragmentArgs
 import com.example.pixiti.utils.hideKeyboard
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import com.example.pixiti.utils.loadImageWithout
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
-    private val viewModel by sharedViewModel<ImageViewModel>()
+    private val viewModel by viewModel<ImageViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +34,16 @@ class SearchFragment : Fragment() {
     }
 
     private fun initView() {
+        binding?.imageViewSearchInfo?.setOnClickListener {          //todo give info of background image and give detail navigation
+             }
+        viewModel.randdomImage.observe(viewLifecycleOwner, {
+            it.let {
+                binding?.imageViewSearchBackground?.loadImageWithout(
+                    imageUrl = it.largeImageURL,
+                    context = requireContext()
+                )
+            }
+        })
 
         binding?.searchViewMain?.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -40,13 +51,15 @@ class SearchFragment : Fragment() {
                 //no-op
                 return true
             }
+
             override fun onQueryTextSubmit(query: String): Boolean {
                 view?.let {
                     activity?.hideKeyboard(it)
                 }
-                if (query.trim().isNotEmpty()){
+                if (query.trim().isNotEmpty()) {
                     val searchQuery = query.trim()
-                    val query = ListFragmentArgs.Builder().setQuery(searchQuery).build().toBundle()
+                    val query = ListFragmentArgs(searchQuery).toBundle()
+                    // val query = ListFragmentArgs.Builder().setQuery(searchQuery).build().toBundle()
                     view?.findNavController()?.navigate(R.id.nav_list, query)
                 }
                 return true
