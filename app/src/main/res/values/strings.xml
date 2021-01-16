@@ -43,7 +43,11 @@
     <string name="desc_permission_error">An error occurred while getting permissions!</string>
     <string name="desc_permission_missing_permission">All permissions are not granted!</string>
     <string name="label_cancel">Cancel</string>
-    <string name="label_settings">Go To App Settings</string>
+    <string name="label_go_to_settings">Go To App Settings</string>
+    <string name="label_settings">Settings</string>
+    <string name="label_filter">Filter</string>
+    <string name="label_about">About pixiti</string>
+
     <string name="desc_download_success">Image Saved</string>
     <string name="desc_image_download_error">An error occurred while saving image!</string>
 

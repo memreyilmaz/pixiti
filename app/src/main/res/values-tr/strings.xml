@@ -37,5 +37,5 @@
     <string name="desc_permission_error">Izinlerin alinmasi sirasinda bir hata olustu!</string>
     <string name="desc_permission_missing_permission">Tüm izinler verilmedi</string>
     <string name="label_cancel">Vazgec</string>
-    <string name="label_settings">Uygulama ayarlarina git</string>
+    <string name="label_go_to_settings">Uygulama ayarlarina git</string>
 </resources>

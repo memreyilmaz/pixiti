@@ -35,5 +35,5 @@
     <string name="desc_permission_denial_title">Anscheinend hast du die nötigen Berechtigungen für diese Funktion deaktiviert</string>
     <string name="desc_permission_denial_detail">Einstellungen für Speicher können unter Einstellungen > Apps > Pixiti > Berechtigungen eingestellt werden</string>
     <string name="label_cancel">Cancel</string>
-    <string name="label_settings">Gehe zur App Einstellungen</string>
+    <string name="label_go_to_settings">Gehe zur App Einstellungen</string>
 </resources>

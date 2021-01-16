@@ -205,7 +205,7 @@ class DetailFragment : Fragment() {
             title = getString(R.string.desc_permission_denial_title),
             message = getString(R.string.desc_permission_denial_detail),
             negativeButtonText = getString(R.string.label_cancel),
-            positiveButtonText = getString(R.string.label_settings),
+            positiveButtonText = getString(R.string.label_go_to_settings),
             positivebuttonListener = {
                 openSettings()
             }

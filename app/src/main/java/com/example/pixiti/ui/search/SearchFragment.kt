@@ -3,10 +3,8 @@ package com.example.pixiti.ui.search
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.navigation.findNavController
 import com.example.pixiti.ImageViewModel
@@ -23,7 +21,15 @@ class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
     private val viewModel by viewModel<ImageViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     private var backgroundImage: Image? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,6 +83,21 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_search, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_info_search -> {
+                //todo implement about
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroyView() {
