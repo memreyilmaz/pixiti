@@ -34,6 +34,7 @@
     <string name="desc_share_image_message">Hello, I want to share this from Pixabay with you;</string>
     <string name="desc_share_with">Share With</string>
     <string name="desc_detail_info_resolution" translatable="false">%1$d x %2d</string>
+    <string name="desc_search_images">Search Images</string>
 
     <string name="desc_list_load_fail">Images couldn\'t load</string>
     <string name="label_list_retry">Retry</string>

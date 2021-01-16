@@ -18,7 +18,9 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
         parent: ViewGroup,
         viewType: Int
     ): CategoriesAdapter.CategoryViewHolder {
-        val binding = ItemCategoryBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = LayoutInflater.from(parent.context).let {
+            ItemCategoryBinding.inflate(it, parent, false)
+        }
         return CategoryViewHolder(binding)
     }
 
@@ -28,7 +30,9 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
 
     override fun getItemCount(): Int = categories.size
 
-    inner class CategoryViewHolder(private val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class CategoryViewHolder(private val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(
+        binding.root
+    ) {
         fun bind(item: Category) {
             binding.apply {
                 textViewCategoryName.text = itemView.context.resources.getString(item.name)

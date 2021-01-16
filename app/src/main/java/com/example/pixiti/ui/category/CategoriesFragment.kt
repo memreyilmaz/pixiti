@@ -44,7 +44,7 @@ class CategoriesFragment : Fragment() {
 
         binding?.recyclerViewCategory?.apply {
             setHasFixedSize(true)
-           // layoutManager = GridLayoutManager(requireContext(), CATEGORY_GRID_COUNT)
+            layoutManager = GridLayoutManager(requireContext(), CATEGORY_GRID_COUNT)
             adapter = categoriesAdapter
         }
         categoriesAdapter.updateItems(Category.createCategoryList())

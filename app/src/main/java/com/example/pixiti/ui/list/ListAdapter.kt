@@ -19,7 +19,9 @@ class ListAdapter : PagingDataAdapter<Image, ListAdapter.ListViewHolder>(IMAGE_C
         parent: ViewGroup,
         viewType: Int
     ): ListAdapter.ListViewHolder {
-        val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = LayoutInflater.from(parent.context).let {
+            ItemListBinding.inflate(it, parent, false)
+        }
         return ListViewHolder(binding)
     }
 
@@ -34,7 +36,6 @@ class ListAdapter : PagingDataAdapter<Image, ListAdapter.ListViewHolder>(IMAGE_C
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Image) {
             binding.apply {
-                textViewListName.text = item.tags
                 imageViewListName.loadImage(imageUrl = item.previewURL, context = itemView.context)
                 root.setOnClickListener {
                     onItemClickListener?.invoke(item)

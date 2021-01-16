@@ -29,10 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="@dimen/margin_medium"
-        android:background="@color/colorAccent"
+        android:background="@color/colorBlack"
         android:focusableInTouchMode="false"
         android:theme="@style/SearchViewStyle"
         app:iconifiedByDefault="false"
-        app:queryHint="Search" />
+        app:queryHint="@string/desc_search_images" />
 
 </RelativeLayout>

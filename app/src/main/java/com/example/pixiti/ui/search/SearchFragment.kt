@@ -1,6 +1,8 @@
 package com.example.pixiti.ui.search
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,8 @@ import androidx.navigation.findNavController
 import com.example.pixiti.ImageViewModel
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentSearchBinding
+import com.example.pixiti.model.Image
+import com.example.pixiti.ui.detail.DetailActivity
 import com.example.pixiti.ui.list.ListFragmentArgs
 import com.example.pixiti.utils.hideKeyboard
 import com.example.pixiti.utils.loadImageWithout
@@ -19,7 +23,7 @@ class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding? = null
     private val viewModel by viewModel<ImageViewModel>()
-
+    private var backgroundImage: Image? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,10 +38,17 @@ class SearchFragment : Fragment() {
     }
 
     private fun initView() {
-        binding?.imageViewSearchInfo?.setOnClickListener {          //todo give info of background image and give detail navigation
-             }
+        binding?.imageViewSearchInfo?.setOnClickListener {
+            backgroundImage.let { image ->
+                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                    putExtra(DetailActivity.BUNDLE_IMAGE, image as Parcelable)
+                }
+                startActivity(intent)
+            }
+        }
         viewModel.randdomImage.observe(viewLifecycleOwner, {
             it.let {
+                backgroundImage = it
                 binding?.imageViewSearchBackground?.loadImageWithout(
                     imageUrl = it.largeImageURL,
                     context = requireContext()

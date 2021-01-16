@@ -6,11 +6,14 @@
     <dimen name="text_size_default">14sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
 
+    <dimen name="padding_xsmall">2dp</dimen>
+    <dimen name="padding_mini_4">4dp</dimen>
     <dimen name="padding_mini">6dp</dimen>
     <dimen name="padding_default">12dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_medium_20">20dp</dimen>
 
+    <dimen name="margin_xsmall">2dp</dimen>
     <dimen name="margin_small">5dp</dimen>
     <dimen name="margin_default">10dp</dimen>
     <dimen name="margin_size_15">15dp</dimen>
@@ -24,7 +27,9 @@
     <dimen name="image_owner_border">2dp</dimen>
 
     <dimen name="info_tag_corner_radius">24dp</dimen>
+    <dimen name="category_item_corner_radius">4dp</dimen>
     <dimen name="info_dialog_corner_radius">12dp</dimen>
     <dimen name="bottom_navigation_elevation">2dp</dimen>
+    <dimen name="category_item_elevation">5dp</dimen>
     <dimen name="detail_count_min_width">36dp</dimen>
 </resources>
