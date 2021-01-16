@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pixiti.ImageViewModel
+import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentListBinding
 import com.example.pixiti.ui.detail.DetailActivity
 import com.example.pixiti.utils.toast
@@ -48,6 +49,7 @@ class ListFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         val query = arguments.query
+        activity?.title = query.capitalize()
         binding?.recyclerViewList?.apply {
             setHasFixedSize(true)
             layoutManager =

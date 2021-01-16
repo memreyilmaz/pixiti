@@ -41,7 +41,7 @@ class CategoriesFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
+        activity?.title = getString(R.string.label_categories)
         binding?.recyclerViewCategory?.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), CATEGORY_GRID_COUNT)
