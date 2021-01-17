@@ -14,4 +14,21 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="orange">#FCB622</color>
+    <color name="orangeDark">#E58923</color>
+
+    <color name="accentNight">#FA4C4C</color>
+    <color name="accentDay">#FA4CA4</color>
+
+    <color name="primaryDarkDay">#E0EAFC</color>
+    <color name="primaryDarkNight">#141E30</color>
+
+    <color name="primaryDay">#F6F8FF</color>
+    <color name="primaryNight">#243B55</color>
+
+    <color name="categoryNight">#2E4C6E</color>
+    <color name="categoryDay">@color/colorWhite</color>
+    <color name="bottomSheetColor">@color/orange</color>
+
 </resources>

@@ -27,7 +27,8 @@
     <dimen name="image_owner_border">2dp</dimen>
 
     <dimen name="info_tag_corner_radius">24dp</dimen>
-    <dimen name="category_item_corner_radius">4dp</dimen>
+    <dimen name="category_item_corner_radius">8dp</dimen>
+    <dimen name="bottom_bar_corner_radius">4dp</dimen>
     <dimen name="info_dialog_corner_radius">12dp</dimen>
     <dimen name="bottom_navigation_elevation">2dp</dimen>
     <dimen name="category_item_elevation">5dp</dimen>
