@@ -20,15 +20,17 @@
 
     <color name="accentNight">#FA4C4C</color>
     <color name="accentDay">#FA4CA4</color>
-
     <color name="primaryDarkDay">#E0EAFC</color>
     <color name="primaryDarkNight">#141E30</color>
+
+    <color name="textColorDay">#141E30</color>
 
     <color name="primaryDay">#F6F8FF</color>
     <color name="primaryNight">#243B55</color>
 
     <color name="categoryNight">#2E4C6E</color>
     <color name="categoryDay">@color/colorWhite</color>
-    <color name="bottomSheetColor">@color/orange</color>
 
+    <color name="bottomSheetColor">@color/orange</color>
+    <color name="transparent">#00000000</color>
 </resources>

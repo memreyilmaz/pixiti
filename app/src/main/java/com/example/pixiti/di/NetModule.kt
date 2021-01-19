@@ -1,7 +1,7 @@
 package com.example.pixiti.di
 
 import android.app.Application
-import com.example.pixiti.BASE_URL
+import com.example.pixiti.utils.BASE_URL
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">pixiti</string>
-    <string name="label_search">Ar</string>
+    <string name="label_search">Ara</string>
     <string name="label_categories">Kategoriler</string>
     <string name="desc_share_with">Paylas</string>
     <string name="label_detail_info_resolution">Çözünürlük</string>

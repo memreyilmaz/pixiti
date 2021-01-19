@@ -18,7 +18,8 @@
         android:layout_height="24dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/margin_medium"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginEnd="@dimen/margin_medium"
         android:src="@drawable/ic_info"
         android:visibility="visible" />
 

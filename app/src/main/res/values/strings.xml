@@ -47,6 +47,7 @@
     <string name="label_settings">Settings</string>
     <string name="label_filter">Filter</string>
     <string name="label_about">About pixiti</string>
+    <string name="label_day_night">Day Night</string>
 
     <string name="desc_download_success">Image Saved</string>
     <string name="desc_image_download_error">An error occurred while saving image!</string>

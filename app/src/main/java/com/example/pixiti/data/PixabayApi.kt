@@ -1,6 +1,6 @@
 package com.example.pixiti.data
 
-import com.example.pixiti.KEY
+import com.example.pixiti.utils.KEY
 import com.example.pixiti.model.ImageResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

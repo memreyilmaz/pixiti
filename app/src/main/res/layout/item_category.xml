@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/margin_default"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/categoryNight"
+    app:cardBackgroundColor="@color/categoryDay"
     app:cardCornerRadius="@dimen/category_item_corner_radius"
     app:cardElevation="@dimen/category_item_elevation">
 

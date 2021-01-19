@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryDay">#243B55</color>
+    <color name="categoryDay">#2E4C6E</color>
+    <color name="primaryDarkDay">#141E30</color>
+    <color name="accentDay">#FA4C4C</color>
+    <color name="textColorDay">#E0EAFC</color>
+    <color name="transparent">#00000000</color>
+
+</resources>
