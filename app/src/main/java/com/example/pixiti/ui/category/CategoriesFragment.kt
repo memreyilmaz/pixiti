@@ -1,15 +1,19 @@
 package com.example.pixiti.ui.category
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixiti.ImageViewModel
+import com.example.pixiti.MainActivity
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentCategoriesBinding
 import com.example.pixiti.model.Category
 import com.example.pixiti.ui.list.ListFragmentArgs
+import com.example.pixiti.utils.KEY_DAY_NIGHT
+import com.example.pixiti.utils.PREFS_FILE
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class CategoriesFragment : Fragment() {
@@ -19,9 +23,9 @@ class CategoriesFragment : Fragment() {
     private var binding: FragmentCategoriesBinding? = null
     private val categoriesAdapter by lazy {
         CategoriesAdapter().apply {
-            onItemClickListener = { category->
+            onItemClickListener = { category ->
                 val query = ListFragmentArgs(category).toBundle()
-               // val query = ListFragmentArgs.setQuery(category).build().toBundle()
+                // val query = ListFragmentArgs.setQuery(category).build().toBundle()
                 view?.findNavController()?.navigate(R.id.nav_list, query)
             }
         }
@@ -56,6 +60,7 @@ class CategoriesFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_categories, menu)
+        menu.findItem(R.id.item_day_night_categories).isChecked = getDayNightPreference()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -64,8 +69,18 @@ class CategoriesFragment : Fragment() {
                 //todo implement about
                 return true
             }
+            R.id.item_day_night_categories -> {
+                item.isChecked = !item.isChecked
+                (activity as MainActivity).setDayNightModePreferences(item.isChecked)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun getDayNightPreference(): Boolean {
+        val preferences = activity?.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
+        return preferences?.getBoolean(KEY_DAY_NIGHT, true) ?: false
     }
 
     override fun onDestroyView() {

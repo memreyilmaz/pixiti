@@ -15,12 +15,18 @@
         <item name="windowActionBarOverlay">true</item>
         <item name="colorPrimary">@color/transparent</item>
         <item name="background">@drawable/drawable_activity_background</item>
+        <item name="android:itemBackground">@color/primaryDay</item>
+        <item name="android:itemTextAppearance">@style/MenuTextAppearance</item>
     </style>
 
     <style name="PixitiTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/black</item>
+    </style>
+
+    <style name="MenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/textColorDay</item>
     </style>
 
     <style name="Theme.MyApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

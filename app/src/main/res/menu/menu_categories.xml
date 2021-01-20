@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/item_info_categories"
+    <item
+        android:id="@+id/item_day_night_categories"
+        android:checkable="true"
+        android:title="@string/label_day_night"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_info_categories"
         android:title="@string/label_about"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>
