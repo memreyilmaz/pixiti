@@ -48,6 +48,11 @@
     <string name="label_filter">Filter</string>
     <string name="label_about">About pixiti</string>
     <string name="label_day_night">Set Night Mode</string>
+    <string name="label_about_attribution"><div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/geotatah" title="geotatah">geotatah</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></string>
+    <string name="label_about_icons_title">Icons on this app from</string>
+    <string name="label_about_images_title">Images on this app from</string>
+    <string name="label_about_pixabay_url"><a href="https://www.pixabay.com/" title="Pixabay">www.pixabay.com</a></string>
+    <string name="label_about_app_title">Pixiti 2021</string>
 
     <string name="desc_download_success">Image Saved</string>
     <string name="desc_image_download_error">An error occurred while saving image!</string>

@@ -3,6 +3,7 @@ package com.example.pixiti.ui.category
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,6 +12,7 @@ import com.example.pixiti.MainActivity
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentCategoriesBinding
 import com.example.pixiti.model.Category
+import com.example.pixiti.ui.AboutFragment
 import com.example.pixiti.ui.list.ListFragmentArgs
 import com.example.pixiti.utils.KEY_DAY_NIGHT
 import com.example.pixiti.utils.PREFS_FILE
@@ -66,7 +68,7 @@ class CategoriesFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_info_categories -> {
-                //todo implement about
+                showAboutFragment()
                 return true
             }
             R.id.item_day_night_categories -> {
@@ -81,6 +83,11 @@ class CategoriesFragment : Fragment() {
     private fun getDayNightPreference(): Boolean {
         val preferences = activity?.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
         return preferences?.getBoolean(KEY_DAY_NIGHT, true) ?: false
+    }
+
+    private fun showAboutFragment(){
+        val aboutFragment: DialogFragment = AboutFragment.newInstance()
+        aboutFragment.show(childFragmentManager, AboutFragment.TAG)
     }
 
     override fun onDestroyView() {
