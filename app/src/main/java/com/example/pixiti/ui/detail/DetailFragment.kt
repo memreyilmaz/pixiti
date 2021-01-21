@@ -34,7 +34,9 @@ import java.io.OutputStream
 
 class DetailFragment : Fragment() {
 
-    private var binding: FragmentDetailBinding? = null
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
+
     private var image: Image? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +50,8 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,7 +60,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initView() {
-        binding?.apply {
+        binding.apply {
             imageViewDetail.apply {
                 loadImage(imageUrl = image?.largeImageURL, requireContext())
                 setOnPhotoTapListener { _, _, _ ->
@@ -235,7 +237,7 @@ class DetailFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 
     companion object {

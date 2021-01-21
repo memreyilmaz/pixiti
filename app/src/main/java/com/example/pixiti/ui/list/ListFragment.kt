@@ -20,7 +20,8 @@ class ListFragment : Fragment() {
 
     private val viewModel by sharedViewModel<ImageViewModel>()
     private val arguments : ListFragmentArgs by navArgs()
-    private var binding: FragmentListBinding? = null
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
 
     private val listAdapter by lazy {
         ListAdapter().apply {
@@ -42,8 +43,8 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentListBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(
@@ -52,7 +53,7 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val query = arguments.query
         activity?.title = query.capitalize()
-        binding?.recyclerViewList?.apply {
+        binding.recyclerViewList.apply {
             setHasFixedSize(true)
             layoutManager =
                 StaggeredGridLayoutManager(LIST_GRID_COUNT, StaggeredGridLayoutManager.VERTICAL)
@@ -91,7 +92,7 @@ class ListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 
     companion object {

@@ -22,7 +22,9 @@ class CategoriesFragment : Fragment() {
 
     private val viewModel by sharedViewModel<ImageViewModel>()
 
-    private var binding: FragmentCategoriesBinding? = null
+    private var _binding: FragmentCategoriesBinding? = null
+    private val binding get() = _binding!!
+
     private val categoriesAdapter by lazy {
         CategoriesAdapter().apply {
             onItemClickListener = { category ->
@@ -42,8 +44,8 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(
@@ -51,7 +53,7 @@ class CategoriesFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = getString(R.string.label_categories)
-        binding?.recyclerViewCategory?.apply {
+        binding.recyclerViewCategory.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), CATEGORY_GRID_COUNT)
             adapter = categoriesAdapter
@@ -92,7 +94,7 @@ class CategoriesFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 
     companion object {

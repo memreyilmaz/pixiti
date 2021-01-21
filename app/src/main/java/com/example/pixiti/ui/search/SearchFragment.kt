@@ -24,7 +24,9 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
-    private var binding: FragmentSearchBinding? = null
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel by viewModel<ImageViewModel>()
     private var backgroundImage: Image? = null
     private var isImageLoaded: Boolean = false
@@ -33,8 +35,8 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +46,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initView() {
-        binding?.imageViewSearchBackground?.setOnClickListener {
+        binding.imageViewSearchBackground.setOnClickListener {
             if (isImageLoaded){
                 backgroundImage.let { image ->
                     val intent = Intent(requireContext(), DetailActivity::class.java).apply {
@@ -57,7 +59,7 @@ class SearchFragment : Fragment() {
         viewModel.randomImage.observe(viewLifecycleOwner, { backgroundImage ->
             backgroundImage.let {
                 this.backgroundImage = backgroundImage
-                binding?.imageViewSearchBackground?.let {
+                binding.imageViewSearchBackground.let {
                     Glide.with(requireContext())
                         .load(backgroundImage.largeImageURL)
                         .listener(object : RequestListener<Drawable> {
@@ -86,7 +88,7 @@ class SearchFragment : Fragment() {
             }
         })
 
-        binding?.searchViewMain?.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        binding.searchViewMain.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
                 //no-op
@@ -111,7 +113,7 @@ class SearchFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 
     companion object {

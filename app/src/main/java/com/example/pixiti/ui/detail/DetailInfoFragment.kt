@@ -16,13 +16,14 @@ import com.example.pixiti.utils.toIntOrZero
 class ImageDetailInfoFragment : DialogFragment() {
 
     private var selectedImage: Image? = null
-    private var binding: FragmentImageDetailInfoBinding? = null
+    private var _binding: FragmentImageDetailInfoBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentImageDetailInfoBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentImageDetailInfoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class ImageDetailInfoFragment : DialogFragment() {
     }
 
     private fun initView() {
-        binding?.apply {
+        binding.apply {
             textViewResolution.text = getString(
                 R.string.desc_detail_info_resolution,
                 selectedImage?.imageWidth.toIntOrZero(),
@@ -68,7 +69,7 @@ class ImageDetailInfoFragment : DialogFragment() {
             tagsList.add(it)
         }
 
-        binding?.apply {
+        binding.apply {
             tagsList.forEach { tag ->
                 val textViewTag =
                     LayoutInflater.from(context).inflate(
@@ -86,7 +87,7 @@ class ImageDetailInfoFragment : DialogFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 
     companion object {

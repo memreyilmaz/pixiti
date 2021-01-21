@@ -9,13 +9,19 @@ import com.example.pixiti.databinding.FragmentDialogAboutBinding
 
 class AboutFragment : DialogFragment() {
 
-    private var binding: FragmentDialogAboutBinding? = null
+    private var _binding: FragmentDialogAboutBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = FragmentDialogAboutBinding.inflate(LayoutInflater.from(context))
+        _binding = FragmentDialogAboutBinding.inflate(LayoutInflater.from(context))
         return AlertDialog.Builder(requireContext())
-            .setView(binding?.root)
+            .setView(binding.root)
             .create()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
