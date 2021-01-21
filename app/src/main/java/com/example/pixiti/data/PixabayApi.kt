@@ -16,6 +16,8 @@ interface PixabayApi {
 
     @GET(KEY)
     suspend fun getOneImage(
-        @Query("image_type") imageType: String? = "photo",
-        @Query("orientation") orientation: String? = "vertical"): ImageResponse
+        @Query("image_type") imageType: String = "photo",
+        @Query("safesearch") safeSearch: Boolean = true,
+        @Query("editors_choice") editorsChoice: Boolean = true,
+        @Query("orientation") orientation: String = "vertical"): ImageResponse
 }
