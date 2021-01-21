@@ -12,17 +12,6 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
-    <ImageView
-        android:id="@+id/image_view_search_info"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:layout_marginEnd="@dimen/margin_medium"
-        android:src="@drawable/ic_info"
-        android:visibility="visible" />
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view_main"
         android:layout_width="match_parent"

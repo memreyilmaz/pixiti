@@ -1,12 +1,18 @@
 package com.example.pixiti.ui.search
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.SearchView
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.pixiti.ImageViewModel
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentSearchBinding
@@ -22,6 +28,7 @@ class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private val viewModel by viewModel<ImageViewModel>()
     private var backgroundImage: Image? = null
+    private var isImageLoaded: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,26 +40,50 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = getString(R.string.label_search)
+        activity?.title = ""
         initView()
     }
 
     private fun initView() {
-        binding?.imageViewSearchInfo?.setOnClickListener {
-            backgroundImage.let { image ->
-                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.BUNDLE_IMAGE, image as Parcelable)
+        binding?.imageViewSearchBackground?.setOnClickListener {
+            if (isImageLoaded){
+                backgroundImage.let { image ->
+                    val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                        putExtra(DetailActivity.BUNDLE_IMAGE, image as Parcelable)
+                    }
+                    startActivity(intent)
                 }
-                startActivity(intent)
             }
         }
-        viewModel.randdomImage.observe(viewLifecycleOwner, {
-            it.let {
-                backgroundImage = it
-                binding?.imageViewSearchBackground?.loadImageWithout(
-                    imageUrl = it.largeImageURL,
-                    context = requireContext()
-                )
+        viewModel.randdomImage.observe(viewLifecycleOwner, { backgroundImage ->
+            backgroundImage.let {
+                this.backgroundImage = backgroundImage
+                binding?.imageViewSearchBackground?.let {
+                    Glide.with(requireContext())
+                        .load(backgroundImage.largeImageURL)
+                        .listener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                isImageLoaded = false
+                                return false
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                isImageLoaded = true
+                                return false
+                            }
+                        }).into(it)
+                }
             }
         })
 
