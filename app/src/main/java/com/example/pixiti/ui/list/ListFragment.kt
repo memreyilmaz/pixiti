@@ -12,7 +12,6 @@ import com.example.pixiti.ImageViewModel
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentListBinding
 import com.example.pixiti.ui.detail.DetailActivity
-import com.example.pixiti.utils.toast
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -59,10 +58,10 @@ class ListFragment : Fragment() {
                 StaggeredGridLayoutManager(LIST_GRID_COUNT, StaggeredGridLayoutManager.VERTICAL)
             adapter = listAdapter.withLoadStateHeaderAndFooter(
                 header = ListLoadStateAdapter().apply {
-                    onRetrylickListener = { listAdapter.retry() }
+                    onRetryClickListener = { listAdapter.retry() }
                 },
                 footer = ListLoadStateAdapter().apply {
-                    onRetrylickListener = { listAdapter.retry() }
+                    onRetryClickListener = { listAdapter.retry() }
                 }
             )
             isNestedScrollingEnabled = false

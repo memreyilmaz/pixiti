@@ -17,7 +17,7 @@ class ImageViewModel(private val imageRepository: ImageRepository) : ViewModel()
     private var currentSearchResult: Flow<PagingData<Image>>? = null
     private var _randomImage = MutableLiveData<Image>()
 
-    val randdomImage : LiveData<Image>
+    val randomImage : LiveData<Image>
         get() = _randomImage
 
     init {

@@ -20,7 +20,7 @@ data class Category(
                 Category(R.string.label_category_feelings, R.drawable.ic_feelings_cat, "feelings"),
                 Category(R.string.label_category_food, R.drawable.ic_food_cat, "food"),
                 Category(R.string.label_category_health, R.drawable.ic_health_cat, "health"),
-                Category(R.string.label_category_industry, R.drawable.ic_industry_cat, "industrie"),
+                Category(R.string.label_category_industry, R.drawable.ic_industry_cat, "industry"),
                 Category(R.string.label_category_nature, R.drawable.ic_nature_cat, "nature"),
                 Category(R.string.label_category_people, R.drawable.ic_people_cat, "people"),
                 Category(R.string.label_category_places, R.drawable.ic_places_cat, "places"),

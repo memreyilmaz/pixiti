@@ -39,7 +39,7 @@ fun Context.showAlertDialog(
     negativeButtonText: String,
     positiveButtonText: String,
     negativeButtonListener: (() -> Unit)? = null,
-    positivebuttonListener: () -> Unit
+    positiveButtonListener: () -> Unit
 ) =
     run {
         val builder = AlertDialog.Builder(this)
@@ -53,7 +53,7 @@ fun Context.showAlertDialog(
             }
         }
         builder.setPositiveButton(positiveButtonText) { dialog, _ ->
-            positivebuttonListener.invoke()
+            positiveButtonListener.invoke()
             dialog.cancel()
         }
         val alertDialog: AlertDialog = builder.create()

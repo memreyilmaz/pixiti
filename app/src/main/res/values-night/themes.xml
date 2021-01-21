@@ -17,6 +17,8 @@
         <item name="background">@drawable/drawable_activity_background</item>
         <item name="android:itemBackground">@color/primaryDay</item>
         <item name="android:itemTextAppearance">@style/MenuTextAppearance</item>
+        <item name="titleTextColor">@color/textColorDay</item>
+        <item name="colorAccent">@color/accentDay</item>
     </style>
 
     <style name="MenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">

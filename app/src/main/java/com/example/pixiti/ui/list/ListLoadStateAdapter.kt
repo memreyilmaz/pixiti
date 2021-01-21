@@ -12,7 +12,7 @@ typealias ListFooterRetryClickListener = () -> Unit
 
 class ListLoadStateAdapter : LoadStateAdapter<ListLoadStateAdapter.ListLoadStateViewHolder>() {
 
-    var onRetrylickListener: ListFooterRetryClickListener? = null
+    var onRetryClickListener: ListFooterRetryClickListener? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,7 +37,7 @@ class ListLoadStateAdapter : LoadStateAdapter<ListLoadStateAdapter.ListLoadState
                 buttonListRetry.apply {
                     showIf(loadState !is LoadState.Loading)
                     setOnClickListener {
-                        onRetrylickListener?.invoke()
+                        onRetryClickListener?.invoke()
                     }
                 }
             }

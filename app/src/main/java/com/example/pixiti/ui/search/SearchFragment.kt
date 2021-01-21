@@ -20,7 +20,6 @@ import com.example.pixiti.model.Image
 import com.example.pixiti.ui.detail.DetailActivity
 import com.example.pixiti.ui.list.ListFragmentArgs
 import com.example.pixiti.utils.hideKeyboard
-import com.example.pixiti.utils.loadImageWithout
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
@@ -55,7 +54,7 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-        viewModel.randdomImage.observe(viewLifecycleOwner, { backgroundImage ->
+        viewModel.randomImage.observe(viewLifecycleOwner, { backgroundImage ->
             backgroundImage.let {
                 this.backgroundImage = backgroundImage
                 binding?.imageViewSearchBackground?.let {
