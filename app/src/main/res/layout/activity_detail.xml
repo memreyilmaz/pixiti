@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/drawable_activity_background"
+    android:background="@color/colorBlack"
     tools:context=".ui.detail.DetailActivity">
 
     <FrameLayout

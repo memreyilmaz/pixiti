@@ -9,7 +9,8 @@
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/categoryDay"
     app:cardCornerRadius="@dimen/category_item_corner_radius"
-    app:cardElevation="@dimen/category_item_elevation">
+    app:cardElevation="@dimen/category_item_elevation"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

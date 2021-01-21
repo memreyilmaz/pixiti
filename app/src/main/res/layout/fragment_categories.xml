@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?android:attr/actionBarSize"
+    android:layout_marginBottom="@dimen/margin_size_12"
     tools:context=".ui.category.CategoriesFragment">
 
     <androidx.recyclerview.widget.RecyclerView

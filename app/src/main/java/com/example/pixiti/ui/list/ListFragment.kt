@@ -15,6 +15,7 @@ import com.example.pixiti.ui.detail.DetailActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.sharedViewModel
+import java.util.*
 
 class ListFragment : Fragment() {
 
@@ -52,7 +53,7 @@ class ListFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         val query = arguments.query
-        activity?.title = query.capitalize()
+        activity?.title = query.capitalize(Locale.getDefault())
         binding.recyclerViewList.apply {
             setHasFixedSize(true)
             layoutManager =
