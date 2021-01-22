@@ -13,7 +13,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.example.pixiti.ImageViewModel
+import com.example.pixiti.viewmodel.ImageViewModel
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentSearchBinding
 import com.example.pixiti.model.Image

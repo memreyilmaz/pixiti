@@ -1,4 +1,4 @@
-package com.example.pixiti
+package com.example.pixiti.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

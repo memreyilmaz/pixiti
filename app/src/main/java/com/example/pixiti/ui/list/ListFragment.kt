@@ -6,9 +6,10 @@ import android.os.Parcelable
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.pixiti.ImageViewModel
+import com.example.pixiti.viewmodel.ImageViewModel
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentListBinding
 import com.example.pixiti.ui.detail.DetailActivity
@@ -84,7 +85,7 @@ class ListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_filter_list -> {
-                //todo implement filter
+                view?.findNavController()?.navigate(R.id.action_nav_list_to_settingsFragment)
                 return true
             }
         }

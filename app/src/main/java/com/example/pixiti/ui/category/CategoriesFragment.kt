@@ -7,8 +7,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.pixiti.ImageViewModel
-import com.example.pixiti.MainActivity
+import com.example.pixiti.viewmodel.ImageViewModel
+import com.example.pixiti.ui.MainActivity
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentCategoriesBinding
 import com.example.pixiti.model.Category

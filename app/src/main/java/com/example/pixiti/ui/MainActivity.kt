@@ -1,4 +1,4 @@
-package com.example.pixiti
+package com.example.pixiti.ui
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.pixiti.R
 import com.example.pixiti.databinding.ActivityMainBinding
 import com.example.pixiti.utils.KEY_DAY_NIGHT
 import com.example.pixiti.utils.PREFS_FILE
