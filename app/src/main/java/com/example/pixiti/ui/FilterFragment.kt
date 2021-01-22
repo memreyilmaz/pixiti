@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentFilterBinding
+import com.example.pixiti.utils.select
+import com.example.pixiti.utils.unSelect
 import com.google.android.flexbox.FlexboxLayout
 
 class FilterFragment : Fragment() {
@@ -37,22 +39,22 @@ class FilterFragment : Fragment() {
     private fun initList(array: Array<String>, layout: FlexboxLayout) {
         val listOfFilterTextView = mutableListOf<TextView>()
         binding.apply {
-            array.forEach { tag ->
+            array.forEach { filterType ->
                 val textViewFilter =
                     LayoutInflater.from(context).inflate(
                         R.layout.item_filter,
                         layout,
                         false
                     ) as TextView
-                textViewFilter.text = tag
+                textViewFilter.text = filterType
                 layout.addView(textViewFilter)
                 listOfFilterTextView.add(textViewFilter)
                 textViewFilter.setOnClickListener { selectedTextView ->
                     if (!selectedTextView.isSelected) {
                         listOfFilterTextView.forEach { textView ->
-                            textView.isSelected = false
+                            textView.unSelect()
                         }
-                        selectedTextView.isSelected = true
+                        selectedTextView.select()
                     }
                 }
             }

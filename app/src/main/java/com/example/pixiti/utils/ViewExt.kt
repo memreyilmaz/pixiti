@@ -36,3 +36,17 @@ fun View.showIf(statement: Boolean?) {
 fun View.showIfNotVisible() {
     this.visibility = if (this.visibility == View.VISIBLE) View.GONE else View.VISIBLE
 }
+
+/*
+ * Sets View selected status to true
+ */
+fun View.select(){
+    this.isSelected = true
+}
+
+/*
+ * Sets View selected status to false
+ */
+fun View.unSelect(){
+    this.isSelected = false
+}
