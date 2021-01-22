@@ -28,6 +28,6 @@ Dependency Information
 
 [FlexBox](https://github.com/google/flexbox-layout) - FlexboxLayout is a library project which brings the similar capabilities of CSS Flexible Box Layout Module to Android.
 
-### Images on this app are from [Pixabay] (https://pixabay.com/api/docs/)
+### Images on this app are from [Pixabay](https://pixabay.com/api/docs/)
 
 ![Pixabay Logo](pixabaylogo.png)
