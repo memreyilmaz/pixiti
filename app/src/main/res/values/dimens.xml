@@ -35,4 +35,7 @@
     <dimen name="bottom_navigation_elevation">2dp</dimen>
     <dimen name="category_item_elevation">5dp</dimen>
     <dimen name="detail_count_min_width">36dp</dimen>
+
+    <dimen name="about_pixabay_logo_height">60dp</dimen>
+    <dimen name="about_pixabay_logo_width">60dp</dimen>
 </resources>

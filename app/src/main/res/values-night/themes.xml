@@ -18,10 +18,15 @@
         <item name="android:itemTextAppearance">@style/MenuTextAppearance</item>
         <item name="titleTextColor">@color/textColorDay</item>
         <item name="colorAccent">@color/accentDay</item>
+        <item name="android:actionOverflowButtonStyle">@style/MenuButtonOverflow</item>
     </style>
 
     <style name="MenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@color/textColorDay</item>
+    </style>
+
+    <style name="MenuButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/textColorDay</item>
     </style>
 
 </resources>
