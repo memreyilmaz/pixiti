@@ -11,7 +11,11 @@ interface PixabayApi {
     suspend fun searchImages(
         @Query("q") query: String,
         @Query("page") page: Int,
-        @Query("per_page") perPage: Int
+        @Query("per_page") perPage: Int,
+        @Query("image_type") imageType: String?,
+        @Query("editors_choice") editorsChoice: Boolean?,
+        @Query("orientation") orientation: String?,
+        @Query("safesearch") safeSearch: Boolean?
     ): ImageResponse
 
     @GET(KEY)

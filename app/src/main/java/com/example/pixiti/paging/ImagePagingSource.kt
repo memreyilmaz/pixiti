@@ -8,14 +8,26 @@ import java.io.IOException
 
 class ImagePagingSource(
     private val pixabayApi: PixabayApi,
-    private val query: String
+    private val query: String,
+    private val imageType: String?,
+    private val editorsChoice: Boolean?,
+    private val orientation: String?,
+    private val safeSearch: Boolean?
 ) : PagingSource<Int, Image>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Image> {
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val imageListResponse = pixabayApi.searchImages(query, position, params.loadSize)
+            val imageListResponse = pixabayApi.searchImages(
+                query = query,
+                page = position,
+                perPage = params.loadSize,
+                imageType = imageType,
+                editorsChoice = editorsChoice,
+                orientation = orientation,
+                safeSearch = safeSearch
+            )
 
             LoadResult.Page(
                 data = imageListResponse.images,
@@ -24,7 +36,7 @@ class ImagePagingSource(
             )
         } catch (e: IOException) {
             LoadResult.Error(e)
-        } catch (e : HttpException){
+        } catch (e: HttpException) {
             LoadResult.Error(e)
         }
     }

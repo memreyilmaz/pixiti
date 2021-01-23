@@ -7,15 +7,21 @@ import com.example.pixiti.model.Image
 import com.example.pixiti.paging.ImagePagingSource
 import kotlinx.coroutines.flow.Flow
 
-class ImageRepository(private val pixabayApi: PixabayApi)  {
+class ImageRepository(private val pixabayApi: PixabayApi) {
 
-    fun getImages(query: String) : Flow<PagingData<Image>> {
+    fun getImages(
+        query: String,
+        imageType: String?,
+        editorsChoice: Boolean?,
+        orientation: String?,
+        safeSearch: Boolean?
+    ): Flow<PagingData<Image>> {
         return Pager(PagingConfig(IMAGE_PAGE_SIZE, IMAGE_MAX_SIZE, false)) {
-            ImagePagingSource(pixabayApi, query)
+            ImagePagingSource(pixabayApi, query, imageType, editorsChoice, orientation, safeSearch)
         }.flow
     }
 
-    suspend fun getRandomImage() : Image? {
+    suspend fun getRandomImage(): Image? {
         return pixabayApi.getOneImage().images.randomOrNull()
     }
 
