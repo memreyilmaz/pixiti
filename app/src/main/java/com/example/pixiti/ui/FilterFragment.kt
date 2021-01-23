@@ -16,7 +16,6 @@ class FilterFragment : Fragment() {
     private var _binding: FragmentFilterBinding? = null
     private val binding get() = _binding!!
     private val viewModel by sharedViewModel<ImageViewModel>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +28,7 @@ class FilterFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = "Filter"
         initTypeList()
         initFilterList()
         initOrientationList()
@@ -49,7 +49,7 @@ class FilterFragment : Fragment() {
                     ) as TextView
                 textViewFilter.apply {
                     text = filterType
-                    tag = filterType
+                    tag = typeArray.indexOf(filterType)
                 }
                 flexboxLayoutImageType.addView(textViewFilter)
                 listOfTypeTextView.add(textViewFilter)
@@ -59,7 +59,7 @@ class FilterFragment : Fragment() {
                             textView.unSelect()
                         }
                         selectedTextView.select()
-                        viewModel.setImageType(textViewFilter.tag.toString().toLowerCase())
+                        viewModel.setImageType(typeArray[selectedTextView.tag as Int].toLowerCase())
                     } else {
                         selectedTextView.unSelect()
                         viewModel.setImageType(null)
@@ -83,7 +83,7 @@ class FilterFragment : Fragment() {
                     ) as TextView
                 textViewFilter.apply {
                     text = filterType
-                    tag = filterType
+                    tag = filterArray.indexOf(filterType)
                 }
                 flexboxLayoutFilter.addView(textViewFilter)
                 listOfFilterTextView.add(textViewFilter)
@@ -93,7 +93,9 @@ class FilterFragment : Fragment() {
                             textView.unSelect()
                         }
                         selectedTextView.select()
-                        viewModel.setEditorsChoice(true)
+
+                        val isEditorsChoice = selectedTextView.tag != 0
+                        viewModel.setEditorsChoice(isEditorsChoice)
                     } else {
                         selectedTextView.unSelect()
                         viewModel.setEditorsChoice(null)
@@ -117,7 +119,7 @@ class FilterFragment : Fragment() {
                     ) as TextView
                 textViewFilter.apply {
                     text = filterType
-                    tag = filterType
+                    tag = orientationArray.indexOf(filterType)
                 }
                 flexboxLayoutOrientation.addView(textViewFilter)
                 listOfOrientationTextView.add(textViewFilter)
@@ -127,7 +129,8 @@ class FilterFragment : Fragment() {
                             textView.unSelect()
                         }
                         selectedTextView.select()
-                        viewModel.setOrientation(textViewFilter.tag.toString().toLowerCase())
+
+                        viewModel.setOrientation(orientationArray[selectedTextView.tag as Int].toLowerCase())
                     } else {
                         selectedTextView.unSelect()
                         viewModel.setOrientation(null)
@@ -151,7 +154,7 @@ class FilterFragment : Fragment() {
                     ) as TextView
                 textViewFilter.apply {
                     text = filterType
-                    tag = filterType
+                    tag = safeSearchArray.indexOf(filterType)
                 }
                 flexboxLayoutSafeSearch.addView(textViewFilter)
                 listOfSafeSearchTextView.add(textViewFilter)
@@ -161,8 +164,8 @@ class FilterFragment : Fragment() {
                             textView.unSelect()
                         }
                         selectedTextView.select()
-
-                        viewModel.setSafeSearch(true)
+                        val isSafeSearch = selectedTextView.tag == 0
+                        viewModel.setSafeSearch(isSafeSearch)
                     } else {
                         selectedTextView.unSelect()
                         viewModel.setSafeSearch(null)
@@ -181,4 +184,3 @@ class FilterFragment : Fragment() {
         fun newInstance() = FilterFragment()
     }
 }
-
