@@ -1,10 +1,12 @@
 package com.example.pixiti.model
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.example.pixiti.R
 
 data class Category(
-    val name: Int,
-    val image: Int,
+    @StringRes val name: Int,
+    @DrawableRes val image: Int,
     val label: String
 ) {
     companion object {

@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pixiti.viewmodel.ImageViewModel
 import com.example.pixiti.R
 import com.example.pixiti.databinding.FragmentListBinding
 import com.example.pixiti.ui.detail.DetailActivity
+import com.example.pixiti.utils.showIf
+import com.example.pixiti.utils.toast
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -20,7 +23,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class ListFragment : Fragment() {
 
     private val viewModel by sharedViewModel<ImageViewModel>()
-    private val arguments : ListFragmentArgs by navArgs()
+    private val arguments: ListFragmentArgs by navArgs()
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
@@ -54,6 +57,15 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val query = arguments.query
         activity?.title = query.capitalize()
+        initListAdapter()
+        lifecycleScope.launch {
+            viewModel.searchImages(query).collectLatest {
+                listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            }
+        }
+    }
+
+    private fun initListAdapter() {
         binding.recyclerViewList.apply {
             setHasFixedSize(true)
             layoutManager =
@@ -69,10 +81,26 @@ class ListFragment : Fragment() {
             isNestedScrollingEnabled = false
         }
 
-        lifecycleScope.launch {
-            viewModel.searchImages(query).collectLatest {
-                listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        listAdapter.addLoadStateListener { loadState ->
+            binding.apply {
+                recyclerViewList.showIf(loadState.source.refresh is LoadState.NotLoading)
+                progressBar.showIf(loadState.source.refresh is LoadState.Loading)
+                buttonListMainRetry.showIf(loadState.source.refresh is LoadState.Error)
+                buttonBackToSearch.showIf(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached)
+                textViewEmptySearchList.showIf(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached)
             }
+
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let {
+                requireContext().applicationContext.toast("${it.error}")
+            }
+        }
+        binding.buttonListMainRetry.setOnClickListener { listAdapter.retry() }
+        binding.buttonBackToSearch.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.nav_search)
         }
     }
 
