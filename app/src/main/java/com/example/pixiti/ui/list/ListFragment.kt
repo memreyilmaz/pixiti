@@ -85,6 +85,7 @@ class ListFragment : Fragment() {
             binding.apply {
                 recyclerViewList.showIf(loadState.source.refresh is LoadState.NotLoading)
                 progressBar.showIf(loadState.source.refresh is LoadState.Loading)
+                //todo add styles and text strings for below three
                 buttonListMainRetry.showIf(loadState.source.refresh is LoadState.Error)
                 buttonBackToSearch.showIf(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached)
                 textViewEmptySearchList.showIf(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached)
