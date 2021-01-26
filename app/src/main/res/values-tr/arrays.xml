@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="image_type">
+        <item>Hepsi</item>
+        <item>Fotograflar</item>
+        <item>Illustrasyonlar</item>
+        <item>Vektörler</item>
+    </string-array>
+
+    <string-array name="image_filter">
+        <item>Hepsi</item>
+        <item>Editorün Secimi</item>
+    </string-array>
+
+    <string-array name="image_orientation">
+        <item>Hepsi</item>
+        <item>Yatay</item>
+        <item>Dikey</item>
+    </string-array>
+
+    <string-array name="safe_search">
+        <item>Acik</item>
+        <item>Kapali</item>
+    </string-array>
+</resources>

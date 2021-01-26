@@ -38,4 +38,8 @@
     <string name="desc_permission_missing_permission">Tüm izinler verilmedi</string>
     <string name="label_cancel">Vazgec</string>
     <string name="label_go_to_settings">Uygulama ayarlarina git</string>
+    <string name="desc_download_success">Resim kaydedildi</string>
+    <string name="label_about">pixiti Hakkinda</string>
+    <string name="label_filter">Filtre</string>
+    <string name="desc_search_images">Fotograf Ara</string>
 </resources>

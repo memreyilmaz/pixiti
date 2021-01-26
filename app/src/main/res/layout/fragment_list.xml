@@ -22,23 +22,27 @@
 
     <Button
         android:id="@+id/button_list_main_retry"
+        style="@style/ListFailButtonStyle"
+        android:text="@string/label_list_retry" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/label_list_retry" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_view_empty_search_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/label_list_retry" />
+        <TextView
+            android:id="@+id/text_view_empty_search_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_default"
+            android:text="@string/desc_search_no_images"
+            android:textSize="@dimen/text_size_20" />
 
-    <Button
-        android:id="@+id/button_back_to_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/label_list_retry" />
-
+        <Button
+            android:id="@+id/button_back_to_search"
+            style="@style/ListFailButtonStyle"
+            android:text="@string/label_back_search" />
+    </LinearLayout>
 </FrameLayout>

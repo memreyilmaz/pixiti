@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="image_type">
+        <item>Alle</item>
+        <item>Foto</item>
+        <item>Illustration</item>
+        <item>Vektor</item>
+    </string-array>
+
+    <string-array name="image_filter">
+        <item>Alle</item>
+        <item>Editor\'s Choice</item>
+    </string-array>
+
+    <string-array name="image_orientation">
+        <item>Alle</item>
+        <item>Horizontal</item>
+        <item>Vertikal</item>
+    </string-array>
+
+    <string-array name="safe_search">
+        <item>An</item>
+        <item>Aus</item>
+    </string-array>
+</resources>
