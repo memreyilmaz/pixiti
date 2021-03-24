@@ -58,7 +58,7 @@ class ListFragment : Fragment() {
         val query = arguments.query
         activity?.title = query.capitalize()
         initListAdapter()
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchImages(query).collectLatest {
                 listAdapter.submitData(viewLifecycleOwner.lifecycle, it)
             }

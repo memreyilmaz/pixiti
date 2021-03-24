@@ -29,7 +29,6 @@ class CategoriesFragment : Fragment() {
         CategoriesAdapter().apply {
             onItemClickListener = { category ->
                 val query = ListFragmentArgs(category).toBundle()
-                // val query = ListFragmentArgs.setQuery(category).build().toBundle()
                 view?.findNavController()?.navigate(R.id.nav_list, query)
             }
         }
